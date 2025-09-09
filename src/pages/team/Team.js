@@ -72,303 +72,307 @@ export default function Team() {
     <div className="team-section-anchor" onLoad={onAnchorAppear}>
       <section id="team-ckeisc" className="team-section active">
         <TeamContainer>
+          
           <Person
             role="社長"
-            name="無語"
-            tags="時間管理大師, 大暖男"
+            name="國 llama"
+            tags="排球少年, 鼓手, 電神"
             description={`
-無語是個大忙人，上學期正辯論地電研攝影，下學期正電研地攝影，假日還要去中培，根本時間管理大師。
+數資班的大電神。
 
-除此之外，他超會照顧別人，身上的背包簡直跟百寶袋沒兩樣，完全是個大暖男～
+貌似一頭羊駝，所以被叫「llama」。
 
-據說很常跟網管小黑做些不可理喻的事，搞得建電的人很躁，北資的人一直在嗑（？
+平時有空就會去打排球，也正在學日文跟畫畫。
             `}
-            imgSrc="/images/team/ckeisc/cdbe.png"
+            imgSrc="/images/team/ckeisc/Formal/michael.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/michael.png"
           />
+
           <Person
-            role="副社長 & 學術"
-            name="西瓜"
-            tags="逆向工程, 大括號換行"
+            role="副社長"
+            name="一拳"
+            tags="難笑, 爛梗王"
             description={`
-學術面幹時，學長給他的試講題目是逆向工程，於是西瓜就此和逆向工程日夜奮戰。
+會下西洋棋、會彈吉他，還報考了日文N3，是一位多才多藝的大電神。
 
-會在電腦上搞很多奇怪的東西，比如他暑訓籌備時曾經把 Ubuntu 魔改成 macOS、被一四學術長 807 推坑後在筆電上裝 NixOS等等。 
-
-講話超級機車，時常講出一針見血的吐槽。
-
-可能是建電數一數二 E 的人，僅次於 Ian 跟 Sleepyboy。
-
+聽過的歌非常廣泛，包含中、日、英等各種語言。
             `}
-            imgSrc="/images/team/ckeisc/watermelon.png"
+            imgSrc="/images/team/ckeisc/Formal/onepunch.jpg"
+            //imgSrc2="/images/team/ckeisc/Informal/"
           />
+
           <Person
             role="學術長"
-            name="kea"
-            tags="Vim, 排球副社, 偏科戰神"
+            name="Eating"
+            tags="街友, 髮型師, 情緒穩定"
             description={`
-和上屆學術長不一樣，kea 參加了所有一四辦的活動，但很常因為一些原因消失。
+科學班的大電神，個性隨和，脾氣極佳。
 
-競程超強，但除此以外的領域貌似都不太熟悉。不過聽說 kea 最近在學網頁跟 Swift，也許下學期會教除了演算法外的其他東西（？
+喜歡寫程式，尤其是網頁開發設計，常常一寫就是好幾個小時。
 
-除了程式超強外，kea 對排球也是略懂略懂，沒在寫扣的時間幾乎都在打排球，還上了排球副社。
-            `}
-            imgSrc="/images/team/ckeisc/kea.png"
+擔任電研、航空與班聯三個社團的幹部，是極為罕見的三幹王，常常和蜜蜂一樣忙碌。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/eating.jpg"
+            //imgSrc2="/images/team/ckeisc/Informal/"
           />
+
           <Person
             role="學術"
-            name="Lucas"
-            tags="雙幹人, Python 廚, 音遊大佬"
+            name="Boron"
+            tags="音遊, 電神, 不加空白, 硼砂"
             description={`
-5 月考幹時同時考了資訊社跟電研的學術，結果上了資訊社的學術長、電研的學術 Orz。
+是一個喜歡打音遊跟寫程式的大電神，不只寫程式會電人，打音遊也會電人。
 
-Lucas 對 Python 一見鍾情，幾乎所有的 side project 都用 Python 寫。
+程式都不打空格（譴責），音遊都不拆直接扛(然後爆炸，但還是個大電神)。
 
-市面上大部份的音遊 Lucas 都超強，世畫用拇指打紫譜輕鬆 FC，Arcaea 之流也不在話下。
-
-最喜歡的動漫角色是美好世界的惠惠，據說就是因為這樣才被叫蘿莉控。
-            `}
-            imgSrc="/images/team/ckeisc/lucas.png"
+有時也會研究一些演算法，然後腦袋爆炸。文科特爛。總而言之，硼砂是一個大電神。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/boron.jpg"
+            //imgSrc2="/images/team/ckeisc/Informal/"
           />
+
           <Person
-            role="學術 & 總務"
-            name="章魚"
-            tags="科班佬, 陽光宅男"
+            role="學術"
+            name="Roy"
+            tags="社恐, 競賽程式電神, 死線大師"
             description={`
-章魚是建電唯一的科班大佬，讓我們膜拜他 Orz Orz。
+是一個內向的人，但是跟熟的人就會很吵，有時候會做出自己無法理解的怪事。
 
-他多數時候都笑容滿面，貌似沒有什麼事能讓他傷心。
+興趣是程式&音樂。會音遊，也會競程，也會數學，也會資安，也會做專案的大電神。技能樹豐富。建中大電神。
 
-高一的每堂演算法小社課都有來，還在上機考第二階段電爛了 Ian。
-`}
-            imgSrc="/images/team/ckeisc/octopus.png"
+最厲害的就是競程&演算法，會 c++ & python ，其他也都精通。大括號不換行，assign 和 arguments 中間要加空格，空格縮排。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/roy.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/roy.jpg"
           />
-          <Person
-            role="學術 & 美宣"
-            name="Sleepyboy"
-            tags="快打旋風6, 緋村劍心cc, 最頂美宣"
-            description={`
-暑訓假案當關主時，Sleepyboy 一直跟來訪的小隊推坑快打旋風 6 和緋村劍心cc，漏講了一個重要線索，導致所有小隊推理全部歪樓。
 
-跟上屆建電美宣 secant 很熟，所以才來考美宣，但繪畫功力實在難以讓人恭維...
-
-幹話功力超強，跟 Ian 比有過之而無不及，之後應該會很常看到他拿著麥克風逼逼。
-            `}
-            imgSrc="/images/team/ckeisc/sb.png"
-          />
           <Person
             role="學術 & 網管"
-            name="Ian"
-            tags="多才多藝, 社交恐怖份子, 競程佬"
+            name="Benny"
+            tags="雜食性動物, 跳槽, 音遊佬, 路人臉"
             description={`
-上知 HTML+CSS+JS，下知遊戲開發和競程，Ian 不但涉獵的領域極廣，並且皆造詣頗深。
+保有學習的熱忱，不斷地接受各種奇異的新知。
 
-不要以為 Ian 是個只會程式的陰沉死宅！他還會跆拳道、打藝，暑訓前甚至去考了紅十字會的急救員執照，只能說 Orz。
+雖然初次見面會有點害羞，也不喜歡用discord以外的社群軟體，班尼其實是一個外向的活潑男孩，喜歡講各種不可理喻的高深言論與幽默言詞。
 
-Ian 還是個社恐，全稱社交恐怖分子，他能跟在場任何人講幹話，有他在完全不會冷場。
-            `}
-            imgSrc="/images/team/ckeisc/ian.png"
+喜歡 Minecraft 模組開發、把 Rust 當腳本寫以及關在房間裡寫 Ricing 
+
+明明會整理電腦桌面，卻不會整理書桌的桌面。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/benny.jpg"
+            //imgSrc2="/images/team/ckeisc/Informal/"
           />
+
           <Person
-            role="網管"
-            name="小黑"
-            tags="甲甲, 黑奴, 義大利人"
+            role="學術 & 網管"
+            name="Windsor"
+            tags="學姊, 飛機迷, 貓, 小鯊鯊"
             description={`
-父親的綽號叫小黑，於是 Aaron Wu 就決定沿用這個綽號。但很不幸的，「小黑」兩個字被跟他同班的無良建電美宣硬是改成「黑奴」，從此這兩字就離不開他了。
+一隻吸貓吸到上癮的貓，吸到決定從一個低能的臭人類變成一隻貓，曾經被丟到烤箱裡享用。
 
-這人不知道有啥毛病，喜歡在別人做出奇怪的行為時學義大利人🤌🤌。
+有空的時候會玩飛行模擬器，是一個莫名冷門的興趣。
 
-很常在脆上面暴言，不過倒挺會吸流量的。
+溫莎被公認為建北電資學術幹部裡學術力最不足的冗員，也是一個拖延成性、完全沒在做事的網管。
 
-和副社西瓜一同堅持大括號換行，被建北電資幾乎所有人圍毆。
-            `}
-            imgSrc="/images/team/ckeisc/aaw.png"
+因為完全沒有學習的能力，溫莎連演算法都不會，聽了一整學期的機器學習課也沒學到半點東西，社展時只能在AI的幫助下用HTML、CSS以及javascript完成一個網頁版的彩地雷遊戲。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/windsor.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/windsor.jpeg"
           />
+
           <Person
-            role="美宣"
-            name="宇哲"
-            tags="家裡有礦, Supercell佬"
+            role="衛生 & 總務"
+            name="Takora"
+            tags="番茄醬加水餃, 小粉紅大冒險, 綿羊, 女裝"
             description={`
-或許是以訛傳訛，或許是深藏不露，反正別人都說他很有錢。不只信義區的地契，還有專屬司機、小島、飛機等。
+Takora是一隻可愛(?)的綿羊，在Instagram上特別的活躍，如果限時動態的數量少於十則，那就代表他的帳號一定被盜了。
 
-宇哲精通超級細胞家的遊戲，荒野 60000，皇室 7500，顯然是大佬。
+Takora有一個較為特殊的痞好，那就是製作與品嚐地獄料理。根據其本人所言，他「喜歡嘗試一些特（ㄒㄧㄝˊ）別（ㄐㄧㄠˋ）的食物，例如白飯加抹茶粉、水餃加番茄醬等，並不純粹像是咖哩拌不拌、火鍋加不加芋頭這種問題，而是多種人神共憤的料理。」曾經因為在建中熱食部的水餃上加早餐部的番茄醬被建北電資全員炎上，是一個名副其實的不良宗教份子。
 
-承上，一天玩荒野亂鬥的時間足足有六個小時，時間到底從哪生出來的?
-            `}
-            imgSrc="/images/team/ckeisc/yuzhe.png"
+另外，一生若沒見過Takora穿女裝，就好像錯過了世上最荒謬又最華麗的瞬間；那份衝擊與歡樂，簡直能定義「活過」的意義。
+              `}
+            imgSrc="/images/team/ckeisc/Formal/takora.jpg"
+            //imgSrc2="/images/team/ckeisc/Informal/"
           />
+
           <Person
-            role="公關"
-            name="蕭生"
-            tags="小隊員, 瓦"
+            role="總務"
+            name="Brandon"
+            tags="可愛, 精神很好, 怪物"
             description={`
-暑訓當隊輔時一天到晚找小隊員聊天，有時還搞不清楚自己在幹嘛，完全是沒付錢的小隊員（X 
-    
-平常在建電話很少，但實際上比其他人想像中瘋癲許多。
+Brandon是一位 C# 和 Unity 高手，也會寫C++。
 
-據說會打瓦，也許可以找他切磋一下。
+雖然Brandon的個性比較內向，他卻常常抱持著熱情洋溢的精神，是一個可愛的陽光大男孩。
+
+愛玩教室電腦，不是學術結果還要教社課(果真是超級大電神) 愛玩gd 可以在學校爬牆上三樓（太厲害了！）
             `}
-            imgSrc="/images/team/ckeisc/xiaoshen.png"
+            imgSrc="/images/team/ckeisc/Formal/brandon.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/brandon.jpeg"
           />
+
           <Person
-            role="公關"
-            name="yen"
-            tags="撞名, 科研佬"
+            role="文書 & 公關"
+            name="葉子"
+            tags="文言文大師, 相聲, 皇帝, 文組"
             description={`
-yen 寒訓的綽號是「火成岩」，但不知為何春遊時又改成 「yen 」，直接撞名一三建電文書兼網管 yen。於是其他人開始叫他小 yen，以和大 yen 區別。
+葉子是一個很愛笑的人，很喜歡地獄哏跟諧音哏，平常的興趣是看書跟打傳說。
 
-他同時是科研的副教學長，所以平常都在忙科研，可能不會很常出現在社辦。
-
-身為公關可能有點懶，頂多用社帳上去發建交限動和回訊息而已，但thread上都是網管小黑在留言。
+再說學業方面，最喜歡的科目是國文，偶像是李白。而由於數學跟自然實在是太爛了，所以毫不猶豫地選擇了文組。
             `}
-            imgSrc="/images/team/ckeisc/yen.png"
+            imgSrc="/images/team/ckeisc/Formal/et.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/et.jpeg"
           />
+
           <Person
-            role="衛生"
-            name="烏龜"
-            tags="地奧, 電神"
+            role="公關 & 美宣"
+            name="虛無獵德"
+            tags="開心果, 喜歡寶可夢, 假面騎士, 會寫Scratch"
             description={`
-深藏不露，烏龜其實超級聰明，甚至還上了地理奧林匹亞的校隊 Orz。
+虛無裂德，取這個名字源自寶可夢虛吾伊德，具體原因也不知道為什麼反正就這樣了。你也可以叫他咻裂德。
 
-一直留著清爽的平頭，不論春夏秋冬。
+選了理組和加了電研，但資訊榮獲補考。會寫scratch等各種程式語言，想學unity和朋友做遊戲。由此可知，他是一個大電神。
 
-高一每堂小社課都會去，超級認真ww。
+很外向的人，喜歡打瓦和荒野，也滿喜歡講話的。
             `}
-            imgSrc="/images/team/ckeisc/turtle.png"
+            imgSrc="/images/team/ckeisc/Formal/ntncg.jpg"
+            imgSrc2="/images/team/ckeisc/Informal/ntncg.jpeg"
           />
+
         </TeamContainer>
       </section>
+
       <section id="team-fgisc" className="team-section">
         <TeamContainer>
+
           <Person
             role="社長"
-            name="Pomelo"
-            tags="電神, 反差"
+            name="Claire"
+            tags="萊爾富, 數專狗, 一六馬麻, 留下來陪我"
             description={`
-Pomelo 曾經在國文報告的 PPT 裡塞 C++ 的程式碼，好電 Orz
+克萊爾實在是太富了所以進化成了克萊爾富。
 
-上課無敵認真，不睡覺也不滑手機，難怪成績這麼好。
+身兼數專狗及一六馬麻的他時常忙得不可開交。
 
-貌似會做些迷惑行為，比如試圖讓筆支撐住魔術方塊（？
+最喜歡粗大Band的留下來陪我。
             `}
-            imgSrc="/images/team/fgisc/pomelo.png"
+            imgSrc="/images/team/fgisc/Formal/claire.jpg"
+            imgSrc2="/images/team/fgisc/Informal/claire.jpeg"
           />
+
           <Person
-            role="副社長 & 總務"
-            name="影城"
-            tags="驕傲竹北人, 死線戰士, 超愛躺"
+            role="副社長 & 公關"
+            name="阿桃"
+            tags="很多女朋友但很專情, 烏薩奇怪叫, 隨地大小睡, 不是給"
             description={`
-影城是新竹人，每次上下課都要搭高鐵來回，然後很常在最後一刻才搭上高鐵。
+平時不是在烏薩奇怪叫就是在隨地大小睡。
 
-東西挺常不見的，包括但不限於春遊的 RPG 道具、學校發的回條、iPad 等等。
-
-座右銘是「能躺著就不要站著，能躺著就不要坐著，能躺著就不要社交」。
+有很多女友但很專情的喜歡k……，由此可知他不是給。
             `}
-            imgSrc="/images/team/fgisc/yingchen.png"
+            imgSrc="/images/team/fgisc/Formal/taozyii.jpg"
+            //imgSrc2="/images/team/fgisc/Informal/"
           />
+
+          <Person
+            role="公關長"
+            name="阿睿"
+            tags="睡覺, 細狗, 吉娃娃, 噪音污染"
+            description={`
+整天喊累甚至帶眼罩來學校的人。
+
+還是不承認自己是細狗的細狗。
+
+平常在哪裡都很吵，是一個噪音污染的吉娃娃。
+            `}
+            imgSrc="/images/team/fgisc/Formal/aray.jpg"
+            imgSrc2="/images/team/fgisc/Informal/aray.jpg"
+          />
+
           <Person
             role="學術長"
-            name="點點"
-            tags="老大, 小動物愛好者"
+            name="Suzy"
+            tags="多才多藝, 充實, 路痴, eye contact"
             description={`
-高一剛開學時裝的很好，大家對他印象都是很乖很可愛，不過據說點點超兇（？
+多才多藝的Suzy是個大忙人，感覺生活很充實。
 
-家裡有超多小動物，貓咪鸚鵡狗蛇，根本動物園。
+跟他講話時會給你滿滿的eye contact 與尊重。
 
-吃東西挺挑剔，堅持只吃切片的蛋。
+這麼厲害的Suzy卻是一個路痴，想不到吧，這世界上還有Suzy不會的事~
             `}
-            imgSrc="/images/team/fgisc/point.png"
+            imgSrc="/images/team/fgisc/Formal/suzy.jpg"
+            imgSrc2="/images/team/fgisc/Informal/suzy.jpeg"
           />
+
           <Person
             role="學術"
-            name="貝絲"
-            tags="亂源，新竹人, 大 E 人"
+            name="Children"
+            tags="資安電神, 小孩, 劇本家, 貼臉開大"
             description={`
-貝絲整天說自己很 i，但實際上超級 E，每次見面都說連假有一堆活動要參加，超級大騙紙。
+小孩，人如其名，心靈非常純潔。
 
-被建電社長無語認真的亂源，很常搞些亂七八糟的事。
+是位資安電神也是名劇本家，各式RPG和假案皆是出自他手。
 
-同時是機研的榮譽社員，因為機研不能雙幹所以只考北資的學術。
+會拿著手機對別人貼臉開(ㄎㄨㄤˊ)大(ㄆㄞ)
             `}
-            imgSrc="/images/team/fgisc/beth.png"
+            imgSrc="/images/team/fgisc/Formal/children.jpg"
+            imgSrc2="/images/team/fgisc/Informal/children.jpg"
           />
+
           <Person
             role="學術"
-            name="Iris"
-            tags="程式超電, 新竹人"
+            name="水餃"
+            tags="看起來不太聰明的樣子, 臉盲, 鯊鯊, 張10"
             description={`
-之前幾乎沒參加過建北電資活動的 Iris，靠著上機考時力壓眾人的 600 分上了學術，超鬼。
+水餃本名張10，二進位學得好都知道這讀作張二。
 
-又一個新竹人，北資到底有幾個新竹人 ==
+看起來不太聰明但實際上卻是數資班的大電神。
 
-每次看到她名字都會想到鳶尾花資料集
+是個大臉盲。熱愛鯊鯊。
             `}
-            imgSrc="/images/team/fgisc/iris.png"
+            imgSrc="/images/team/fgisc/Formal/dumpling.jpg"
+            imgSrc2="/images/team/fgisc/Informal/dumpling.jpeg"
           />
+
           <Person
-            role="學術"
-            name="語雲"
-            tags="樹枝班, 暑訓執秘"
+            role="學術 & 文書"
+            name="夜雨"
+            tags="傲嬌, 高冷, 抽象, 極i"
             description={`
-依本人所述，其實一開始想進數學研究社，只可惜北一沒有，陰錯陽差下才來了資研。
+學姊感覺好高冷喔，但其實他不是不想理你啦只是他極I又很傲嬌。
 
-莫名其妙成了暑訓執秘，超級扛，做事超有效率，辦了一個很棒的暑訓。
-
-行為很像小動物，暑訓場復時還躺在椅子上睡了兩個小時。
+但熟起來後有時講話突然很抽象，算是一個可愛的反差吧。
             `}
-            imgSrc="/images/team/fgisc/cloud.png"
+            imgSrc="/images/team/fgisc/Formal/yeyu.jpg"
+            //imgSrc2="/images/team/fgisc/Informal/"
           />
+
           <Person
             role="文書長"
-            name="千特"
-            tags="文書獨苗, 畫畫大神"
+            name="高高"
+            tags="I人微E, 想睡覺, 手感很好, 咖波"
             description={`
-超級電神，除了程式以外的東西幾乎什麼都會- 舉凡畫畫、學業、羽球、瓦羅蘭、社交。
-    
-同屆沒有人考文書，於是千特就理所當然成了北資的文書獨苗。
+明明是I人，學姊怎麼越來越E了呢？
 
-畫畫超強，他甚至幫隔壁建電畫了社服。
+整天想睡覺，很喜歡咖波。
+
+是一隻手感很好的大貓咪。
             `}
-            imgSrc="/images/team/fgisc/valorant.png"
+            imgSrc="/images/team/fgisc/Formal/ruiyu.jpg"
+            imgSrc2="/images/team/fgisc/Informal/ruiyu.jpg"
           />
+
           <Person
-            role="公關"
-            name="消波塊"
-            tags="樂隊的狗, 社交恐怖分子，音遊人"
+            role="文書 & 總務"
+            name="小言"
+            tags="畫畫超強, 我有沒有讀, 一人世界, 漫畫"
             description={`
-在參加暑訓前，小波就決定參加樂隊惹，但她又同時很喜歡資研，於是成了三幹人、樂隊的狗。
+問他考試有沒有讀他都會回「我也沒有讀」，事實證明他都偷捲。
 
-北資最社牛的人，沒有之一，極度瘋癲。
-    
-據說有打世界計畫和其他音遊。
+喜歡漫畫的小言是個畫畫大師，時常沉浸在自己的一人世界。
             `}
-            imgSrc="/images/team/fgisc/chi.png"
+            imgSrc="/images/team/fgisc/Formal/xiaoyan.jpg"
+            imgSrc2="/images/team/fgisc/Informal/xiaoyan.jpeg"
           />
-          <Person
-            role="公關"
-            name="感冒膠囊"
-            tags="公主, 其實很 i"
-            description={`
-每次要她回訊息時，都得說「公主請回訊息」。
 
-感冒膠囊雖然是公關，但其實挺 i（？。
-
-人好看成績又好，根本人生勝利組。
-            `}
-            imgSrc="/images/team/fgisc/ss.png"
-          />
-          <Person
-            role="網管"
-            name="水母"
-            tags="社恐, 水母樣"
-            description={`
-水母有著北資數一數二強的實力，是普通班中唯一進資訊能競二階的學生 Orz
-
-一臉水母樣，所有才有水母這個綽號。
-
-本人挺社恐的，但對熟人非常熱情。
-            `}
-            imgSrc="/images/team/fgisc/jellyfish.png"
-          />
         </TeamContainer>
       </section>
     </div>

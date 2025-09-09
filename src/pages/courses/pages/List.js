@@ -26,8 +26,22 @@ export default function CourseList() {
       課程介紹
     </section>
     <section id="courses">
-      <SectionTitle>114 上學期 建電大社課</SectionTitle>
-      <SectionTitle>114 上學期 放學小社課</SectionTitle>
+      <SectionTitle>114 上學期 大社課</SectionTitle>
+      <div className="container py-1">
+        {text ? (<>
+          <CourseIntro
+            title="建電大社課"
+            imgSrc="/images/courses/ckeisc45.png"
+            content={text.split("<%-== next ==-%>")[5]}
+            btnColor="crimson"
+            href="/ckeisc/"
+          />
+        </>) : (<>
+          <Loading />
+          <div style={{ height: "100dvh" }}></div>
+        </>)}
+      </div>
+      <SectionTitle>114 上學期 放學聯合小社課</SectionTitle>
       <div className="container py-1">
         {text ? (<>
           <CourseIntro

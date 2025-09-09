@@ -23,13 +23,15 @@ function setContent(index, view, textContent, setText, setSlides) {
       "game_design": "遊戲設計",
       "algorithm": "演算法",
       "linux": "資安",
+      "ckeisc": "建電大社課",
     },
     imgSrcs = {
       "web":          "/images/courses/Web.png",
       "python":       "/images/courses/Python.png",
       "game_design":  "/images/courses/Unity.png",
       "algorithm":    "/images/courses/C++.png",
-      "linux":    "/images/courses/Cybersecurity.png",
+      "linux":        "/images/courses/Cybersecurity.png",
+      "ckeisc":       "/images/courses/ckeisc45.png",
     },
     slides = {
       "web": <>
@@ -71,6 +73,10 @@ function setContent(index, view, textContent, setText, setSlides) {
         <Slides url="https://slides.com/oct0920/template/" />
         <h4 id="fourth">C++ STL 之二</h4>
         <Slides url="https://slides.com/oct0920/copy-of-template-209f73" />
+      </>,
+      "ckeisc": <>
+        <h4 id="first">第一堂大社課</h4>
+        <iframe loading="lazy" width= "560" height= "410" title="第一堂大社課" src="https://www.canva.com/design/DAGx1T9oANc/KP3pb-HDca9nBFdClX1xzA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"/>
       </>,
     }
 
@@ -114,7 +120,7 @@ function slidesContentsOnScroll(ev) {
 export default function CourseIndividual() {
   const { id: courseId } = useParams();
 
-  const index = [ "algorithm", "game_design", "linux", "python", "web"].indexOf(courseId);
+  const index = [ "algorithm", "game_design", "linux", "python", "web", "ckeisc"].indexOf(courseId);
 
   const [text, setText] = React.useState();
   const [slides, setSlides] = React.useState();

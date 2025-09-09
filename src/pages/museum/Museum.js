@@ -56,15 +56,16 @@ export default function Museum() {
             有了進階網頁框架的強大功能，晴只需要把六哥寫好的前端網頁做成模板整理，接上 Router！於是 28<Up>th</Up> 社網就這麼誕生了……
           </p>
         </MuseumItem>
-        <MuseumItem imgSrc="/images/courses/404.png" alt="29th website">
+        <MuseumItem imgSrc="/images/museum/29th_website.png" alt="29th website">
           <TitleLink url="https://29th.ckefgisc.org/">29<Up>th</Up> 社網</TitleLink>
           <p>
-            鹽亞倫大電神架好了 27<Up>th</Up> 社網，好強。接著換 28<Up>th</Up> 上幹了，網管 晴 決定重頭寫自己的社網。
+            
           </p>
+        </MuseumItem>
+        <MuseumItem imgSrc="/images/museum/29th_plus_website.png" alt="29th-plus website">
+          <TitleLink url="https://29th-plus.ckefgisc.org/">29<Up>th</Up>-plus 社網</TitleLink>
           <p>
-            雖然有學長姊的範本可以借鑑，不過因為他是笨，花了大半個暑假也沒有什麼進度。
-            不過在某一天意外學會了 <a href="https://react.dev/" target="_blank" rel="noreferrer">React</a> 之後，事情變得不同了。
-            有了進階網頁框架的強大功能，晴只需要把六哥寫好的前端網頁做成模板整理，接上 Router！於是 28<Up>th</Up> 社網就這麼誕生了……
+            
           </p>
         </MuseumItem>
         <SectionTitle>其他網站</SectionTitle>
