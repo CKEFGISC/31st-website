@@ -35,18 +35,23 @@ function setContent(index, view, textContent, setText, setSlides) {
     },
     slides = {
       "web": <>
+      {/*
         <h4 id="first">網頁基礎</h4>
         <Slides url="https://slides.com/laura07110717/copy-of" />
+      */}
       </>,
       "python": <>
+      {/*
         <h4 id="first">基礎語法 1</h4>
         <Slides url="https://slides.com/d11231621/python-1" />
         <h4 id="second">基礎語法 2</h4>
         <Slides url="https://slides.com/d11231621/python-2" />
         <h4 id="third">基礎語法 3</h4>
         <Slides url="https://slides.com/d11231621/python-3" />
+      */}
       </>,
       "game_design": <>
+      {/*
         <h4 id="first">Unity 第一堂：基本介紹及初始準備</h4>
         <Slides url="https://slides.com/d11230618/ckefgisc_unity_class1/" />
         <h4 id="second">Unity 第二堂</h4>
@@ -55,16 +60,20 @@ function setContent(index, view, textContent, setText, setSlides) {
         <Slides url="https://slides.com/d11230618/ckefgisc_unity_class3" />
         <h4 id="fourth">Unity 第四堂：TileMap & random brush</h4>
         <Slides url="https://slides.com/jellyyfish/unity-tilemap" />
+      */}
       </>,
       "linux": <>
+      {/*
         <h4 id="first">資安第一堂：Linux 介紹和 Shell</h4>
         <Slides url="https://slides.com/demonaarwu/linux-0/" />
         <h4 id="second">資安第二堂：VM & Python</h4>
         <Slides url="https://slides.com/demonaarwu/linux-1" />
         <h4 id="third">資安第三堂：Git & GitHub 入門</h4>
         <Slides url="https://slides.com/demonaarwu/guide_to_git_and_github" />
+        */}
       </>,
       "algorithm": <>
+      {/*
         <h4 id="first">C++ 基礎語法之一</h4>
         <Slides url="https://slides.com/keaucucal/c" />
         <h4 id="second">C++ 基礎語法之二</h4>
@@ -73,17 +82,29 @@ function setContent(index, view, textContent, setText, setSlides) {
         <Slides url="https://slides.com/oct0920/template/" />
         <h4 id="fourth">C++ STL 之二</h4>
         <Slides url="https://slides.com/oct0920/copy-of-template-209f73" />
+      */}
       </>,
       "ckeisc": <>
         <h4 id="first">第一堂大社課</h4>
         <iframe loading="lazy" width= "560" height= "410" title="第一堂大社課" src="https://www.canva.com/design/DAGx1T9oANc/KP3pb-HDca9nBFdClX1xzA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"/>
+        <h4 id="second">第二堂大社課 - Playing With DevTools</h4>
+        <Slides url="https://slides.com/windsoryeh/f12" />
       </>,
     }
 
-  setText(<CourseDetails
+  {/*setText(<CourseDetails
     title={titles[view]}
     imgSrc={imgSrcs[view]}
     content={theContent.includes("%UNDONE%") ? `# ${titles[view]}\n\n` + Placeholder() : theContent}
+  />);*/}
+  setText(<CourseDetails
+    title={titles[view]}
+    imgSrc={imgSrcs[view]}
+    content={
+      theContent && theContent.includes("%UNDONE%")
+        ? `# ${titles[view]}\n\n` + Placeholder()
+        : (theContent ?? "")
+    }
   />);
   setSlides(slides[view]);
 }
@@ -145,6 +166,12 @@ export default function CourseIndividual() {
     <section id="individual-course">
       <div className="container">
         {text ?? (<Loading />)}
+        <a href="#/courses">
+          <button className={`btn btn-light mt-2`} src="?alt=2">
+            <i className="fa-solid fa-arrow-left-long"></i>
+            返回&nbsp;
+          </button>
+        </a>
       </div>
     </section>
     <section id="slides">

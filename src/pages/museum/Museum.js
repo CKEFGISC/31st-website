@@ -59,13 +59,17 @@ export default function Museum() {
         <MuseumItem imgSrc="/images/museum/29th_website.png" alt="29th website">
           <TitleLink url="https://29th.ckefgisc.org/">29<Up>th</Up> 社網</TitleLink>
           <p>
-            
+            29<Up>th</Up> 社網是網管 小黑 由已經相當成熟的 28<Up>th</Up> 社網改版而來的，把過時的內容更新成新一屆的資料，也改動了網頁一部分的外觀。
           </p>
         </MuseumItem>
         <MuseumItem imgSrc="/images/museum/29th_plus_website.png" alt="29th-plus website">
-          <TitleLink url="https://29th-plus.ckefgisc.org/">29<Up>th</Up>-plus 社網</TitleLink>
+          <TitleLink url="https://29th-plus.ckefgisc.org/">29<Up>th</Up> 新社網</TitleLink>
           <p>
-            
+            29<Up>th</Up> 網管 小黑 心心念念一直想自己從頭寫一個新的社網。
+          </p>
+          <p>
+            在幹部生涯的尾聲，他終於實現了自己的夢想，寫出了 29<Up>th</Up> 新社網。
+            這個網站使用了全新的框架，也把主題色改成了深色，首頁更是煥然一新，更能夠吸引學弟妹們加入這個溫暖的大家庭。
           </p>
         </MuseumItem>
         <SectionTitle>其他網站</SectionTitle>
