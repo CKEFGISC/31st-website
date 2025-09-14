@@ -27,7 +27,7 @@ export default function Alive() {
           description="建北電資聯合寒訓，簡稱寒訓。這將是學長姊們最後一個舉辦的大型活動，在寒訓間，會安排幾個神秘活動，到最後你一定會帶著感動的心回到溫暖的家中。"
         />
         <EventIntro
-          imgSrc="/images/events/2025_spring.JPG"
+          imgSrc="/images/events/2025_spring.jpg"
           imgText="2025 聯合春遊"
           title="春遊"
           time="四～五月"
