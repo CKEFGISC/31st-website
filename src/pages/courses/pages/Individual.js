@@ -92,11 +92,11 @@ function setContent(index, view, textContent, setText, setSlides) {
       </>,
     }
 
-  {/*setText(<CourseDetails
+  /*{setText(<CourseDetails
     title={titles[view]}
     imgSrc={imgSrcs[view]}
     content={theContent.includes("%UNDONE%") ? `# ${titles[view]}\n\n` + Placeholder() : theContent}
-  />);*/}
+  />);}*/
   setText(<CourseDetails
     title={titles[view]}
     imgSrc={imgSrcs[view]}
