@@ -31,6 +31,7 @@ export default function Header() {
                 <NavLink href="#/museum">歷屆</NavLink>
                 <NavLink href="https://iscoj.ckefgisc.org/"
                   target="_blank" rel="noreferrer">ISCOJ</NavLink>
+                <NavLink href="https://exhibit.ckefgisc.org/">2026社展</NavLink>
               </ul>
             </div>
           </div>
