@@ -24,6 +24,8 @@ export default function Offcanvas() {
           <OffLink href="#/museum">歷屆</OffLink>
           <OffLink href="https://iscoj.fg.tp.edu.tw/"
             target="_blank" rel="noreferrer">ISCOJ</OffLink>
+          <OffLink href="https://exhibit.ckefgisc.org/"
+            target="_blank" rel="noreferrer">2026社展</OffLink>
         </ul>
       </div>
     </div>
