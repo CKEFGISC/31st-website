@@ -75,12 +75,5 @@ const ogImage = new URL(image, Astro.site);
             import "~/scripts/header";
             import "~/scripts/reveal";
         </script>
-
-        <style is:global>
-            /* the first block of every page slides in on load */
-            main > :first-child {
-                animation: var(--animate-rise);
-            }
-        </style>
     </body>
 </html>

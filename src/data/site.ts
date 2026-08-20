@@ -29,7 +29,11 @@ export const navItems: NavItem[] = [
     { label: "活動", href: "/events" },
     { label: "歷屆", href: "/museum" },
     { label: "ISCOJ", href: "https://iscoj.ckefgisc.org/", external: true },
-    { label: "2026社展", href: "https://exhibit.ckefgisc.org/", external: true },
+    {
+        label: "2026社展",
+        href: "https://exhibit.ckefgisc.org/",
+        external: true,
+    },
 ];
 
 export type SocialLink = {
@@ -39,16 +43,6 @@ export type SocialLink = {
 };
 
 export const socialLinks: SocialLink[] = [
-    {
-        title: "建中電研 46th Linktree",
-        href: "https://linktr.ee/ckeisc_46th",
-        icon: "link",
-    },
-    {
-        title: "北一資研 40th Linktree",
-        href: "https://linktr.ee/fgisc40th",
-        icon: "link",
-    },
     {
         title: "建中電研 46th Instagram",
         href: "https://www.instagram.com/ckeisc_46th/",

@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 
 import BaseLayout from "~/layouts/BaseLayout.astro";
@@ -9,6 +10,7 @@ import SectionTitle from "~/components/SectionTitle.astro";
 import SlidesPanel from "~/components/SlidesPanel.astro";
 import Icon from "~/components/Icon.astro";
 import type { Course } from "~/lib/courses";
+import { asset } from "~/lib/images";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const courses = await getCollection("courses");
@@ -33,7 +35,13 @@ const { Content } = await render(course);
     <section id="individual-course">
         <Container>
             <div class="course">
-                <img src={image} alt={title} />
+                <Image
+                    src={asset(image)}
+                    alt={title}
+                    width={1200}
+                    widths={[400, 600, 800, 1200]}
+                    sizes="(max-width: 992px) min(600px, 80vw), 400px"
+                />
                 <div class="description md">
                     <h1>{title}</h1>
                     {instructors.length > 0 && <p>講師：{instructors.join("、")}</p>}

@@ -386,6 +386,14 @@
         --accent-light: #df84dc;
         --accent-fg: var(--color-ink);
     }
+    /* Bootstrap's .btn-success, which the 資安 course used */
+    .accent-success {
+        --accent: #198754;
+        --accent-dark: #157347;
+        --accent-darker: #146c43;
+        --accent-light: #157347;
+        --accent-fg: #fff;
+    }
     .accent-kelly {
         --accent: #4cbb17;
         --accent-dark: #43a414;
@@ -633,15 +641,21 @@
 \* ------------------------------------------------------------------ */
 
 @layer components {
-    /* about — mascot figures */
+    /* about — mascot figures. markdown wraps each child in its own <p>,
+       so the paragraphs are the flex items and the image sizes inside one. */
     .mascot {
         display: flex;
         margin: 0;
     }
+    .mascot > p {
+        margin: 0;
+    }
+    .mascot > p:has(img) {
+        flex-shrink: 0;
+    }
     .mascot img {
         width: 180px;
         height: auto;
-        flex-shrink: 0;
         margin: 0 55px 0.8em 0;
         padding: 20px;
     }
@@ -726,11 +740,14 @@
         position: absolute;
         bottom: 56px;
         left: 64px;
+        margin-bottom: 0.5rem;
         padding: 4px 14px;
         border-radius: 20px;
         background: rgb(255 255 255 / 0.95);
+        font-family: var(--font-heading);
         font-size: 16px;
         font-weight: 300;
+        line-height: 1.2;
     }
     .event-body h3 {
         font-size: 28px;

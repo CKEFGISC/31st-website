@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
 import type { accents } from "~/content.config";
 
 interface Props {
@@ -15,7 +18,15 @@ const { href, image, title, description, accent = "papaya" } = Astro.props;
 <div class="col-md-3">
     <a href={href}>
         <div class="card">
-            <img src={image} class="card-img-top" alt="" loading="lazy" />
+            <Image
+                src={asset(image)}
+                class="card-img-top"
+                alt=""
+                width={660}
+                widths={[200, 330, 480, 660]}
+                sizes="(min-width: 768px) 25vw, 92vw"
+                loading="lazy"
+            />
             <div class="card-body">
                 <h5 class="card-title">{title}</h5>
                 <p class="card-text">{description}</p>

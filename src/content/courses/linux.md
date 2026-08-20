@@ -2,7 +2,7 @@
 title: 資安 (Linux)
 shortTitle: 資安
 image: /images/courses/Cybersecurity.png
-accent: kelly
+accent: success
 group: minor
 order: 3
 instructors: [Benny, Claire]

@@ -1,4 +1,10 @@
 ---
+import { Image } from "astro:assets";
+
+import chickenThick from "~/assets/images/chicken_thick.png";
+import ckeiscMouse from "~/assets/images/ckeisc_mouse.png";
+import fgiscStar from "~/assets/images/fgisc_star.png";
+import x from "~/assets/images/x.png";
 import { ordinal, site } from "~/data/site";
 ---
 
@@ -9,16 +15,44 @@ import { ordinal, site } from "~/data/site";
 >
     <span class="icon">
         <span class="icon-text">
-            <img src="/images/chicken_thick.png" alt="" class="mark on-rest" />
-            <img src="/images/ckeisc_mouse.png" alt="" class="mark on-hover" />
+            <Image
+                src={chickenThick}
+                alt=""
+                width={96}
+                widths={[48, 96]}
+                sizes="48px"
+                class="mark on-rest"
+            />
+            <Image
+                src={ckeiscMouse}
+                alt=""
+                width={96}
+                widths={[48, 96]}
+                sizes="48px"
+                class="mark on-hover"
+            />
             <span>&nbsp;CKE</span>
             <span class="on-hover wide"
                 >ISC {site.ckeisc}<sup><small>{ordinal(site.ckeisc)}</small></sup></span
             >
-            <img src="/images/x.png" alt="" class="mark on-hover" />
+            <Image
+                src={x}
+                alt=""
+                width={96}
+                widths={[48, 96]}
+                sizes="48px"
+                class="mark on-hover"
+            />
             <span>FGISC&nbsp;</span>
             <span class="on-hover">{site.fgisc}<sup><small>{ordinal(site.fgisc)}</small></sup></span>
-            <img src="/images/fgisc_star.png" alt="" class="mark on-hover" />
+            <Image
+                src={fgiscStar}
+                alt=""
+                width={96}
+                widths={[48, 96]}
+                sizes="48px"
+                class="mark on-hover"
+            />
             <span class="on-rest"
                 >{site.generation}<sup><small>{ordinal(site.generation)}</small></sup>&nbsp;</span
             >

@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
 import type { Person } from "~/data/team";
 
 interface Props {
@@ -10,13 +13,23 @@ const { person } = Astro.props;
 
 <div class="person" data-reveal>
     <div class="person-photo">
-        <img src={person.photo} alt={person.name} loading="lazy" />
+        <Image
+            src={asset(person.photo)}
+            alt={person.name}
+            width={500}
+            widths={[250, 500]}
+            sizes="250px"
+            loading="lazy"
+        />
         {
             person.photoAlt && (
-                <img
-                    src={person.photoAlt}
+                <Image
+                    src={asset(person.photoAlt)}
                     alt=""
                     aria-hidden="true"
+                    width={500}
+                    widths={[250, 500]}
+                    sizes="250px"
                     loading="lazy"
                     class="hover-to-show"
                 />

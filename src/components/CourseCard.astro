@@ -1,5 +1,8 @@
 ---
+import { Image } from "astro:assets";
+
 import Icon from "./Icon.astro";
+import { asset } from "~/lib/images";
 import type { Course } from "~/lib/courses";
 
 interface Props {
@@ -15,7 +18,14 @@ const paragraphs = summary
 ---
 
 <div class:list={["course", `accent-${accent}`]} data-reveal>
-    <img src={image} alt={title} loading="lazy" />
+    <Image
+        src={asset(image)}
+        alt={title}
+        width={1200}
+        widths={[400, 600, 800, 1200]}
+        sizes="(max-width: 992px) min(600px, 80vw), 400px"
+        loading="lazy"
+    />
 
     <div class="description md">
         <h1>{title}</h1>

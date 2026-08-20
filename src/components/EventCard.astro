@@ -1,4 +1,7 @@
 ---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
 import type { Event } from "~/data/events";
 
 interface Props {
@@ -11,9 +14,12 @@ const { event } = Astro.props;
 <div class="row" data-reveal>
     <div class="col-md-4 offset-md-1 text-center">
         <figure class="event-figure">
-            <img
-                src={event.image ?? "/images/events/404.png"}
+            <Image
+                src={asset(event.image ?? "/images/events/404.png")}
                 alt=""
+                width={840}
+                widths={[252, 320, 420, 640, 840]}
+                sizes="(max-width: 536px) min(360px, 90vw), (max-width: 767px) 420px, (max-width: 991px) 252px, 320px"
                 loading="lazy"
             />
             {event.imageCaption && <figcaption>{event.imageCaption}</figcaption>}

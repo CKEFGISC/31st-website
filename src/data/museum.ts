@@ -13,7 +13,7 @@ export type MuseumSection = {
 
 const up = (n: string) => `${n}<sup><small>th</small></sup>`;
 const link = (href: string, text: string) =>
-    `<a href="${href}" target="_blank" rel="noreferrer" class="underline underline-offset-2">${text}</a>`;
+    `<a href="${href}" target="_blank" rel="noreferrer">${text}</a>`;
 
 export const museumSections: MuseumSection[] = [
     {
@@ -25,7 +25,7 @@ export const museumSections: MuseumSection[] = [
                 image: "/images/museum/27th_website.png",
                 body: [
                     "建北電資以往皆有架設網站作為招生及宣傳用途。但是自從建電社辦的伺服器被學校沒收之後，一直以來都找不到一個良好的網站架設環境，也沒有一個地方讓學術們統一放置教材供學弟妹使用。",
-                    "因此，在一三接幹了之後，一二學術長檸檬便一直希望繼任的鹽亞倫可以將他們沒有做出的社網完成。於是鹽亞倫便找了溫室菜以及北資學術長嗯嗯，嘗試從頭寫出一個網站，並且透過 Github Pages 進行架設。",
+                    "因此，在一三接幹了之後，一二學術長檸檬便一直希望繼任的鹽亞倫可以將他們沒有做出的社網完成。 於是鹽亞倫便找了溫室菜以及北資學術長嗯嗯，嘗試從頭寫出一個網站，並且透過 Github Pages 進行架設。",
                 ],
             },
             {
@@ -34,7 +34,7 @@ export const museumSections: MuseumSection[] = [
                 image: "/images/museum/28th_website.png",
                 body: [
                     `鹽亞倫大電神架好了 ${up("27")} 社網，好強。接著換 ${up("28")} 上幹了，網管 晴 決定重頭寫自己的社網。`,
-                    `雖然有學長姊的範本可以借鑑，不過因為他是笨，花了大半個暑假也沒有什麼進度。不過在某一天意外學會了 ${link("https://react.dev/", "React")} 之後，事情變得不同了。有了進階網頁框架的強大功能，晴只需要把六哥寫好的前端網頁做成模板整理，接上 Router！於是 ${up("28")} 社網就這麼誕生了……`,
+                    `雖然有學長姊的範本可以借鑑，不過因為他是笨，花了大半個暑假也沒有什麼進度。 不過在某一天意外學會了 ${link("https://react.dev/", "React")} 之後，事情變得不同了。 有了進階網頁框架的強大功能，晴只需要把六哥寫好的前端網頁做成模板整理，接上 Router！於是 ${up("28")} 社網就這麼誕生了……`,
                 ],
             },
             {
@@ -51,7 +51,7 @@ export const museumSections: MuseumSection[] = [
                 image: "/images/museum/29th_plus_website.png",
                 body: [
                     `${up("29")} 網管 小黑 心心念念一直想自己從頭寫一個新的社網。`,
-                    `在幹部生涯的尾聲，他終於實現了自己的夢想，寫出了 ${up("29")} 新社網。這個網站使用了全新的框架，也把主題色改成了深色，首頁更是煥然一新，更能夠吸引學弟妹們加入這個溫暖的大家庭。`,
+                    `在幹部生涯的尾聲，他終於實現了自己的夢想，寫出了 ${up("29")} 新社網。 這個網站使用了全新的框架，也把主題色改成了深色，首頁更是煥然一新，更能夠吸引學弟妹們加入這個溫暖的大家庭。`,
                 ],
             },
         ],

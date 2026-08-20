@@ -9,6 +9,7 @@ export const accents = [
     "iris",
     "orchid",
     "kelly",
+    "success",
     "papaya",
     "brand",
 ] as const;

@@ -1,10 +1,13 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import Container from "~/components/Container.astro";
 import TitleBar from "~/components/TitleBar.astro";
 import SectionTitle from "~/components/SectionTitle.astro";
 import Icon from "~/components/Icon.astro";
 import { museumSections } from "~/data/museum";
+import { asset } from "~/lib/images";
 ---
 
 <BaseLayout title="博物館">
@@ -18,7 +21,14 @@ import { museumSections } from "~/data/museum";
                     <Container>
                         {section.entries.map((entry) => (
                             <div class="museum-item">
-                                <img src={entry.image} alt="" loading="lazy" />
+                                <Image
+                                    src={asset(entry.image)}
+                                    alt=""
+                                    width={840}
+                                    widths={[420, 640, 840]}
+                                    sizes="(max-width: 792px) 86vw, 420px"
+                                    loading="lazy"
+                                />
                                 <div class="vertical-line" />
                                 <div>
                                     <a
@@ -52,10 +62,6 @@ import { museumSections } from "~/data/museum";
     #museum :global(.site-container) {
         display: flex;
         flex-direction: column;
-        align-items: center;
-    }
-    h4 {
-        display: flex;
         align-items: center;
     }
 </style>

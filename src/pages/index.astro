@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseLayout from "~/layouts/BaseLayout.astro";
 import Container from "~/components/Container.astro";
 import SectionTitle from "~/components/SectionTitle.astro";
 import Card from "~/components/Card.astro";
 import { site } from "~/data/site";
+import hero from "~/assets/images/homepage/ckefgisc30.jpg";
 
 const cards = [
     {
@@ -36,6 +39,14 @@ const cards = [
 <BaseLayout>
     <section id="intro">
         <div class="jumbotron">
+            <Image
+                class="hero"
+                src={hero}
+                alt=""
+                layout="full-width"
+                loading="eager"
+                fetchpriority="high"
+            />
             <Container>
                 <div class="row">
                     <div class="col-md-12">
@@ -65,17 +76,28 @@ const cards = [
 <style>
     #intro > .jumbotron {
         /* fills what is left of the screen, so the header stays visible */
+        position: relative;
         height: calc(100dvh - var(--header-h, 74px));
         display: flex;
         align-items: center;
         margin-bottom: 0;
+        overflow: hidden;
         background-color: var(--color-ink);
-        background-image:
-            linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.5)),
-            url("/images/homepage/ckefgisc30.JPG");
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
+    }
+
+    /* the photo sits behind the text; brightness(0.5) is the black 50% wash
+       the old background-image stacked on top of it */
+    #intro .hero {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        filter: brightness(0.5);
+    }
+    #intro > .jumbotron :global(.site-container) {
+        position: relative;
     }
 
     #intro h1 {
