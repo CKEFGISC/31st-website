@@ -1,52 +1,33 @@
 {
-  "name": "react-test",
-  "version": "0.1.0",
-  "private": true,
-  "homepage": ".",
-  "dependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "jquery": "^3.7.1",
-    "katex": "^0.16.10",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router": "^6.22.3",
-    "react-router-dom": "^6.22.3",
-    "react-scripts": "5.0.1",
-    "remarkable": "^2.0.1",
-    "remarkable-katex": "^1.2.1",
-    "sass": "^1.75.0",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "start": "set PORT=3404 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "gh-pages": "^6.3.0"
-  }
+    "name": "ckefgisc-31st-website",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "engines": {
+        "node": ">=22.12.0"
+    },
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "check": "astro check",
+        "astro": "astro",
+        "deploy": "astro build && gh-pages -d dist"
+    },
+    "dependencies": {
+        "@astrojs/react": "^6.0.4",
+        "@tailwindcss/vite": "^4.3.3",
+        "@types/react": "^19.2.18",
+        "@types/react-dom": "^19.2.4",
+        "astro": "^7.2.4",
+        "react": "^19.2.8",
+        "react-dom": "^19.2.8",
+        "tailwindcss": "^4.3.3"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.10",
+        "gh-pages": "^6.3.0",
+        "typescript": "^6"
+    }
 }

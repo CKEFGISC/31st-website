@@ -1,0 +1,30 @@
+---
+import type { accents } from "~/content.config";
+
+interface Props {
+    href: string;
+    image: string;
+    title: string;
+    description: string;
+    accent?: (typeof accents)[number];
+}
+
+const { href, image, title, description, accent = "papaya" } = Astro.props;
+---
+
+<a
+    href={href}
+    class="border-line group flex h-full flex-col overflow-hidden rounded-lg border bg-white transition-shadow duration-200 hover:shadow-lg"
+>
+    <img
+        src={image}
+        alt=""
+        loading="lazy"
+        class="aspect-video w-full object-cover"
+    />
+    <div class="flex flex-1 flex-col p-4">
+        <h3 class="mb-2 text-2xl font-semibold">{title}</h3>
+        <p class="mb-5 flex-1">{description}</p>
+        <span class:list={["btn btn-accent", `accent-${accent}`]}>點此查看</span>
+    </div>
+</a>

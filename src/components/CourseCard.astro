@@ -1,0 +1,42 @@
+---
+import Icon from "./Icon.astro";
+import type { Course } from "~/lib/courses";
+
+interface Props {
+    course: Course;
+}
+
+const { course } = Astro.props;
+const { title, image, accent, summary, instructors } = course.data;
+const paragraphs = summary
+    .split(/\n\s*\n/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
+---
+
+<article
+    class:list={["mb-12 flex flex-col gap-5 lg:flex-row", `accent-${accent}`]}
+    data-reveal
+>
+    <img
+        src={image}
+        alt={title}
+        loading="lazy"
+        class="border-line h-fit w-[600px] max-w-[80dvw] shrink-0 rounded-[10px] border-[3px] lg:w-[400px]"
+    />
+
+    <div class="md">
+        <h3 class="mb-2 text-2xl font-semibold">{title}</h3>
+        {
+            instructors.length > 0 && (
+                <p class="mb-3">講師：{instructors.join("、")}</p>
+            )
+        }
+        {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+
+        <a href={`/courses/${course.id}`} class="btn btn-accent mt-2">
+            查看更多
+            <Icon name="arrow-right" size="1em" />
+        </a>
+    </div>
+</article>

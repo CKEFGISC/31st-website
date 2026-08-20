@@ -1,0 +1,38 @@
+---
+import Icon from "./Icon.astro";
+import { site, socialLinks } from "~/data/site";
+
+const copyright = `Copyright © ${new Date().getFullYear()} CKEFGISC ${site.shortName} ${site.generation}st`;
+---
+
+<footer
+    class="bg-line mt-auto flex flex-col items-center justify-between gap-4 px-3 py-4 md:flex-row md:px-16"
+>
+    <small>{copyright}</small>
+
+    <ul class="flex items-center gap-4">
+        {
+            socialLinks.map((link) => (
+                <li>
+                    <a
+                        href={link.href}
+                        title={link.title}
+                        aria-label={link.title}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="border-ink text-ink hover:bg-ink hover:text-paper flex size-9 items-center justify-center rounded-full border-2 transition-colors duration-200"
+                    >
+                        <Icon name={link.icon} size="1.15em" />
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</footer>
+
+<style>
+    footer {
+        animation: fade 1.25s both;
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+</style>

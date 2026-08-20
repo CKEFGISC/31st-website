@@ -1,0 +1,69 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+import SectionTitle from "~/components/SectionTitle.astro";
+import SlidesPanel from "~/components/SlidesPanel.astro";
+import Icon from "~/components/Icon.astro";
+import type { Course } from "~/lib/courses";
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const courses = await getCollection("courses");
+    return courses.map((course) => ({
+        params: { id: course.id },
+        props: { course },
+    }));
+};
+
+interface Props {
+    course: Course;
+}
+
+const { course } = Astro.props;
+const { title, shortTitle, image, instructors, slides } = course.data;
+const { Content } = await render(course);
+---
+
+<BaseLayout title={shortTitle}>
+    <TitleBar>課程介紹</TitleBar>
+
+    <section class="pb-12">
+        <Container>
+            <div class="mb-8 flex flex-col gap-5 lg:flex-row">
+                <img
+                    src={image}
+                    alt={title}
+                    class="border-line h-fit w-[600px] max-w-[80dvw] shrink-0 rounded-[10px] border-[3px] lg:w-[400px]"
+                />
+                <div class="md">
+                    <h2 class="mb-2 text-3xl font-semibold">{title}</h2>
+                    {
+                        instructors.length > 0 && (
+                            <p class="mb-3">講師：{instructors.join("、")}</p>
+                        )
+                    }
+                    <Content />
+                </div>
+            </div>
+
+            <a href="/courses" class="btn bg-paper-soft hover:bg-line">
+                <Icon name="arrow-left" size="1em" />
+                返回
+            </a>
+        </Container>
+    </section>
+
+    {
+        slides.length > 0 && (
+            <section class="pb-12">
+                <SectionTitle>簡報區</SectionTitle>
+                <Container>
+                    <SlidesPanel slides={slides} />
+                </Container>
+            </section>
+        )
+    }
+</BaseLayout>

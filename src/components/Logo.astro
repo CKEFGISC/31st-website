@@ -1,0 +1,109 @@
+---
+import { site } from "~/data/site";
+---
+
+<a href="/" class="logo" aria-label={`${site.shortName} ${site.generation}th 首頁`}>
+    <span class="logo-text font-mono">
+        <img
+            src="/images/chicken_thick.png"
+            alt=""
+            class="mark on-rest"
+            width="24"
+            height="24"
+        />
+        <img
+            src="/images/ckeisc_mouse.png"
+            alt=""
+            class="mark on-hover"
+            width="24"
+            height="24"
+        />
+        <span>&nbsp;CKE</span>
+        <span class="on-hover wide">ISC {site.ckeisc}<sup><small>th</small></sup></span>
+        <img src="/images/x.png" alt="" class="mark on-hover" width="24" height="24" />
+        <span>FGISC&nbsp;</span>
+        <span class="on-hover">{site.fgisc}<sup><small>th</small></sup></span>
+        <img
+            src="/images/fgisc_star.png"
+            alt=""
+            class="mark on-hover"
+            width="24"
+            height="24"
+        />
+        <span class="on-rest">{site.generation}<sup><small>th</small></sup>&nbsp;</span>
+    </span>
+</a>
+
+<style>
+    .logo {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+        padding: 0.2em 1em;
+        font-size: 1.4rem;
+        user-select: none;
+        cursor: pointer;
+    }
+
+    .logo-text {
+        display: flex;
+        width: fit-content;
+        align-items: flex-end;
+    }
+
+    .logo-text > * {
+        display: inline-block;
+        overflow-x: hidden;
+        white-space: nowrap;
+        transition: 500ms;
+    }
+
+    .logo-text img {
+        /* the width/height attributes only supply the aspect ratio */
+        height: auto;
+    }
+
+    /* collapsed by default, revealed on hover */
+    .on-hover {
+        width: 0;
+        opacity: 0;
+    }
+    .on-rest {
+        width: 2.25em;
+        opacity: 1;
+    }
+    .mark.on-rest {
+        width: 1.5em;
+    }
+
+    /* expand on hover (pointer-ish viewports only) */
+    @media (min-width: 576px) {
+        .logo:hover .on-rest {
+            width: 0;
+            opacity: 0;
+        }
+        .logo:hover .on-hover {
+            width: 2.25em;
+            opacity: 1;
+        }
+        .logo:hover .on-hover.wide {
+            width: 4.45em;
+        }
+        .logo:hover .mark.on-hover {
+            width: 1.5em;
+        }
+
+        /* ...but a shrunk header stays compact, so the bar does not jump */
+        :global(.header-shrink) .logo:hover .on-rest {
+            width: 2.25em;
+            opacity: 1;
+        }
+        :global(.header-shrink) .logo:hover .mark.on-rest {
+            width: 1.5em;
+        }
+        :global(.header-shrink) .logo:hover .on-hover {
+            width: 0;
+            opacity: 0;
+        }
+    }
+</style>

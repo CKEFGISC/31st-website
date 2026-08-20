@@ -1,0 +1,56 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+import SectionTitle from "~/components/SectionTitle.astro";
+import Icon from "~/components/Icon.astro";
+import { museumSections } from "~/data/museum";
+---
+
+<BaseLayout title="博物館">
+    <TitleBar>歷屆博物館</TitleBar>
+
+    <section class="pb-12">
+        <Container class="flex flex-col items-center">
+            {
+                museumSections.map((section) => (
+                    <>
+                        <SectionTitle>{section.heading}</SectionTitle>
+                        {section.entries.map((entry) => (
+                            <article
+                                class="mb-12 flex w-[991px] max-w-[85dvw] flex-col md:flex-row"
+                                data-reveal
+                            >
+                                <img
+                                    src={entry.image}
+                                    alt=""
+                                    loading="lazy"
+                                    width="420"
+                                    class="border-line mb-4 max-w-[86dvw] rounded-[3px] border-2 object-cover md:mb-0 md:w-[420px] md:rounded-md md:border-4"
+                                />
+                                <div
+                                    class="border-line mx-4 hidden rounded border-2 md:block"
+                                    aria-hidden="true"
+                                />
+                                <div class="md">
+                                    <a
+                                        href={entry.url}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        class="inline-flex items-center gap-2 hover:underline"
+                                    >
+                                        <h3 set:html={entry.title} />
+                                        <Icon name="external" size="0.75em" />
+                                    </a>
+                                    {entry.body.map((paragraph) => (
+                                        <p set:html={paragraph} />
+                                    ))}
+                                </div>
+                            </article>
+                        ))}
+                    </>
+                ))
+            }
+        </Container>
+    </section>
+</BaseLayout>

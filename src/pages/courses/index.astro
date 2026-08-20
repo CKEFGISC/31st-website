@@ -1,0 +1,31 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+import SectionTitle from "~/components/SectionTitle.astro";
+import CourseCard from "~/components/CourseCard.astro";
+import { getGroupedCourses } from "~/lib/courses";
+
+const groups = (await getGroupedCourses()).filter(
+    (group) => group.courses.length > 0,
+);
+---
+
+<BaseLayout title="課程">
+    <TitleBar>課程介紹</TitleBar>
+
+    <section class="pb-12">
+        {
+            groups.map((group) => (
+                <>
+                    <SectionTitle>{group.heading}</SectionTitle>
+                    <Container>
+                        {group.courses.map((course) => (
+                            <CourseCard course={course} />
+                        ))}
+                    </Container>
+                </>
+            ))
+        }
+    </section>
+</BaseLayout>

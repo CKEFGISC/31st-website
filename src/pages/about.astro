@@ -1,0 +1,25 @@
+---
+import { getEntry, render } from "astro:content";
+
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+
+const entry = await getEntry("pages", "about");
+if (!entry) throw new Error("Missing src/content/pages/about.md");
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title}>
+    <TitleBar>{entry.data.title}</TitleBar>
+
+    <section class="pb-12">
+        <Container>
+            <div
+                class="md bg-paper-soft rounded-[10px] px-4 py-5 md:px-12 md:py-8"
+            >
+                <Content />
+            </div>
+        </Container>
+    </section>
+</BaseLayout>

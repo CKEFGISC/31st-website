@@ -1,0 +1,90 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import SectionTitle from "~/components/SectionTitle.astro";
+import Card from "~/components/Card.astro";
+import { site } from "~/data/site";
+
+const cards = [
+    {
+        href: "/about",
+        image: "/images/homepage/about.jpg",
+        title: "關於我們",
+        description: "關於建北電資",
+    },
+    {
+        href: "/courses",
+        image: "/images/homepage/class.jpg",
+        title: "課程介紹",
+        description: "社課介紹",
+    },
+    {
+        href: "/events",
+        image: "/images/homepage/event.jpg",
+        title: "活動介紹",
+        description: "四大獵祭與其他活動",
+    },
+    {
+        href: "/museum",
+        image: "/images/homepage/museum.jpg",
+        title: "博物館",
+        description: "歷屆的成果展示與網站",
+    },
+];
+---
+
+<BaseLayout>
+    <section id="intro" class="pb-12">
+        <div class="hero flex h-[90vh] items-center max-md:h-[calc(20vh+40vw)]">
+            <Container>
+                <h1
+                    class="text-paper my-3.5 text-[65px] font-semibold md:text-[75px]"
+                >
+                    {site.shortName}
+                </h1>
+                <h2 class="text-paper text-base font-normal md:text-[22px]">
+                    一個跨越 <span>{site.generation}</span> 年的大家庭
+                </h2>
+                <a
+                    href="/about"
+                    class="text-brand border-brand hover:bg-brand hover:text-ink mt-5 inline-block rounded-full border-2 px-5 py-2.5 font-medium transition-colors"
+                >
+                    關於我們
+                </a>
+            </Container>
+        </div>
+    </section>
+
+    <section id="map" class="pb-12">
+        <Container>
+            <SectionTitle>網站地圖</SectionTitle>
+            <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+                {cards.map((card) => <Card {...card} />)}
+            </div>
+        </Container>
+    </section>
+</BaseLayout>
+
+<style>
+    .hero {
+        background-color: var(--color-ink);
+        background-image:
+            linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.5)),
+            url("/images/homepage/ckefgisc30.JPG");
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+
+    h1 {
+        text-shadow: 0 0 10px var(--color-ink);
+        animation: rise 1s both;
+    }
+    h2 {
+        animation: rise 1s 0.15s both;
+    }
+    a {
+        text-shadow: 0 0 3px var(--color-brand);
+        animation: rise 1.25s 0.3s both;
+    }
+</style>

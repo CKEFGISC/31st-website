@@ -1,0 +1,69 @@
+---
+import Logo from "./Logo.astro";
+import MobileNav from "./MobileNav.tsx";
+import { navItems, site } from "~/data/site";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header id="site-header" class="bg-paper sticky top-0 z-40">
+    <div
+        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-3 py-1"
+    >
+        <Logo />
+
+        <nav class="hidden lg:block" aria-label="主選單">
+            <ul class="flex items-end gap-8 whitespace-nowrap">
+                {
+                    navItems.map((item) => (
+                        <li>
+                            <a
+                                href={item.href}
+                                aria-current={
+                                    currentPath === item.href
+                                        ? "page"
+                                        : undefined
+                                }
+                                target={item.external ? "_blank" : undefined}
+                                rel={item.external ? "noreferrer" : undefined}
+                                class="hover:text-brand aria-[current=page]:decoration-brand transition-colors aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
+                            >
+                                {item.label}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </nav>
+
+        {/* only narrow viewports need the drawer, so desktop ships no React */}
+        <MobileNav
+            client:media="(max-width: 1023.98px)"
+            items={navItems}
+            title={`CKEFGISC ${site.generation}th`}
+            currentPath={currentPath}
+        />
+    </div>
+</header>
+
+<style>
+    header {
+        transition: box-shadow 200ms ease;
+    }
+
+    nav li {
+        font-size: 20px;
+        font-weight: 600;
+        transition:
+            font-size 200ms ease,
+            margin 200ms ease;
+    }
+
+    /* toggled by src/scripts/header.ts once the page is scrolled */
+    header:global(.header-shrink) {
+        box-shadow: 0 1px 6px rgb(54 54 54 / 0.12);
+    }
+    header:global(.header-shrink) nav li {
+        font-size: 18px;
+    }
+</style>
