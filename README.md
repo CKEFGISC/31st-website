@@ -1,6 +1,6 @@
 # 建北電資 31st 社網
 
-[31st.ckefgisc.org](https://31st.ckefgisc.org)
+[ckefgisc.org](https://ckefgisc.org)
 
 以 [Astro](https://astro.build) + [React](https://react.dev) + [Tailwind CSS](https://tailwindcss.com) 打造的靜態網站。
 
