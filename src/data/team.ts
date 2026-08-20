@@ -50,7 +50,7 @@ const ckeisc: Person[] = [
         role: "學術",
         name: "叉燒",
         tags: ["行情家", "社長"],
-        photo: "/images/team/ckeisc/Formal/turtle.jpg",
+        photo: "/images/team/ckeisc/Formal/alex.jpg",
     },
     {
         role: "學術 ",

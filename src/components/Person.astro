@@ -57,11 +57,6 @@ const { person } = Astro.props;
                 person.description.map((paragraph) => <p>{paragraph}</p>)
             ) : (
                 <div class="coming-soon">
-                    <span class="coming-soon-dots" aria-hidden="true">
-                        <i />
-                        <i />
-                        <i />
-                    </span>
                     <span class="coming-soon-text">敬請期待</span>
                     <span class="coming-soon-sub">介紹撰寫中，再等等我們</span>
                 </div>
@@ -98,39 +93,7 @@ const { person } = Astro.props;
         padding: 1.6em 1.2em;
         border: 2px dashed var(--color-line);
         border-radius: 14px;
-        background:
-            linear-gradient(
-                115deg,
-                transparent 30%,
-                rgb(254 202 80 / 0.14) 50%,
-                transparent 70%
-            )
-            no-repeat,
-            var(--color-paper-soft);
-        background-size:
-            220% 100%,
-            auto;
-        animation: coming-soon-sheen 4s ease-in-out infinite;
-    }
-
-    .coming-soon-dots {
-        display: flex;
-        gap: 6px;
-    }
-    .coming-soon-dots i {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--color-brand);
-        animation: coming-soon-bounce 1.4s ease-in-out infinite;
-    }
-    .coming-soon-dots i:nth-child(2) {
-        animation-delay: 0.18s;
-        background: var(--color-brand-soft);
-    }
-    .coming-soon-dots i:nth-child(3) {
-        animation-delay: 0.36s;
-        background: var(--color-sand);
+        background: var(--color-paper-soft);
     }
 
     .coming-soon-text {
@@ -147,39 +110,5 @@ const { person } = Astro.props;
         font-size: 0.85rem;
         letter-spacing: 0.04em;
         color: color-mix(in srgb, var(--color-ink) 55%, transparent);
-    }
-
-    @keyframes coming-soon-sheen {
-        0%,
-        100% {
-            background-position:
-                140% 0,
-                0 0;
-        }
-        55% {
-            background-position:
-                -40% 0,
-                0 0;
-        }
-    }
-
-    @keyframes coming-soon-bounce {
-        0%,
-        60%,
-        100% {
-            transform: translateY(0);
-            opacity: 0.55;
-        }
-        30% {
-            transform: translateY(-5px);
-            opacity: 1;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .coming-soon,
-        .coming-soon-dots i {
-            animation: none;
-        }
     }
 </style>
