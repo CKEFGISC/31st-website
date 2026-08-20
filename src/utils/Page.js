@@ -6,79 +6,90 @@ import $ from "jquery";
 import Offcanvas from "../offcanvas/OffCanvas";
 
 export function handleFadeIn() {
-  $(".fade-in.hiding").each((i, element) => {
-    var object = $(element);
-    var windowObject = $(".main-wrapper");
+    $(".fade-in.hiding").each((i, element) => {
+        var object = $(element);
+        var windowObject = $(".main-wrapper");
 
-    if (object.position().top + object.outerHeight() * 0.5
-      < windowObject.scrollTop() + windowObject.height()
-      && !object.parents("*").hasClass("inactive")) {
-      object.removeClass("hiding");
-    }
-  });
+        if (
+            object.position().top + object.outerHeight() * 0.5 <
+                windowObject.scrollTop() + windowObject.height() &&
+            !object.parents("*").hasClass("inactive")
+        ) {
+            object.removeClass("hiding");
+        }
+    });
 }
 
 export function handleHeaderSize() {
-  let mainWrapper = $(".main-wrapper");
-  $("header").toggleClass(
-    "header-shrink", 
-    mainWrapper.scrollTop() > 50 && mainWrapper.prop("scrollHeight") > window.outerHeight * 1.2
-  );
+    let mainWrapper = $(".main-wrapper");
+    $("header").toggleClass(
+        "header-shrink",
+        mainWrapper.scrollTop() > 50 &&
+            mainWrapper.prop("scrollHeight") > window.outerHeight * 1.2,
+    );
 }
 
 export function windowOnLoad() {
-  $(".main-wrapper").on("scroll", () => window.requestAnimationFrame(handleFadeIn));
-  $(window).on("resize", handleFadeIn);
-  handleFadeIn();
+    $(".main-wrapper").on("scroll", () =>
+        window.requestAnimationFrame(handleFadeIn),
+    );
+    $(window).on("resize", handleFadeIn);
+    handleFadeIn();
 
-  $(".main-wrapper").on("scroll", handleHeaderSize);
+    $(".main-wrapper").on("scroll", handleHeaderSize);
 }
 
 export function switchPageAnimation() {
-  $(".main-wrapper")[0].scrollTo({ top: 0, behavior: "instant" });
+    $(".main-wrapper")[0].scrollTo({ top: 0, behavior: "instant" });
 
-  var footerElement = $("footer")[0];
-  footerElement.style.animation = "none";
-  window.requestAnimationFrame(() => {
+    var footerElement = $("footer")[0];
+    footerElement.style.animation = "none";
     window.requestAnimationFrame(() => {
-      footerElement.style.animation = null;
+        window.requestAnimationFrame(() => {
+            footerElement.style.animation = null;
+        });
     });
-  });
 }
 
 export default function Page(props) {
-  React.useEffect(() => {
-    document.title = `${props.title} | 建北電資 30th`;
+    React.useEffect(() => {
+        document.title = `${props.title} | 建北電資 31st`;
 
-    switchPageAnimation();
+        switchPageAnimation();
 
-    // for mobile
-    windowOnLoad();
-    // for PC
-    window.addEventListener("load", windowOnLoad);
-  }, [ props.title ]);
-  return (<>
-    {/* <Helmet>
+        // for mobile
+        windowOnLoad();
+        // for PC
+        window.addEventListener("load", windowOnLoad);
+    }, [props.title]);
+    return (
+        <>
+            {/* <Helmet>
       <meta property="og:title" content={`${props.title} | 建北電資 28th`} />
       <meta property="og:url" content={document.URL} />
     </Helmet> */}
-    <div className="page-content-wrapper" onLoad={handleFadeIn}>
-      {props.children}
-    </div>
-    <Offcanvas />
-  </>);
-};
+            <div className="page-content-wrapper" onLoad={handleFadeIn}>
+                {props.children}
+            </div>
+            <Offcanvas />
+        </>
+    );
+}
 
 export function ErrorPage() {
-  const error = useRouteError();
+    const error = useRouteError();
 
-  return (
-    <div id="error-page" className="container py-5 d-flex flex-column align-items-center flex-grow-1">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.status}: {error.statusText || error.message}</i>
-      </p>
-    </div>
-  );
+    return (
+        <div
+            id="error-page"
+            className="container py-5 d-flex flex-column align-items-center flex-grow-1">
+            <h1>Oops!</h1>
+            <p>Sorry, an unexpected error has occurred.</p>
+            <p>
+                <i>
+                    {error.status}: {error.statusText || error.message}
+                </i>
+            </p>
+        </div>
+    );
 }

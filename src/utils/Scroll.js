@@ -3,7 +3,8 @@ import $ from 'jquery';
 export default function Scroll(props) {
   return (
     <span style={{ cursor: "pointer" }} onClick={() => {
-      $(props.to)[0].scrollIntoView();
+      const target = $(props.to)[0];
+      if (target) target.scrollIntoView();
     }} {...props}>{props.children}</span>
   );
 }
