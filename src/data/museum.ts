@@ -54,6 +54,14 @@ export const museumSections: MuseumSection[] = [
                     `在幹部生涯的尾聲，他終於實現了自己的夢想，寫出了 ${up("29")} 新社網。 這個網站使用了全新的框架，也把主題色改成了深色，首頁更是煥然一新，更能夠吸引學弟妹們加入這個溫暖的大家庭。`,
                 ],
             },
+            {
+                title: `${up("30")} 社網`,
+                url: "https://30th.ckefgisc.org/",
+                image: "/images/museum/30th_website.png",
+                body: [
+                    `${up("30")} 社網是網管 溫莎 由已經相當成熟的 ${up("29")} 社網改版而來的，把過時的內容更新成新一屆的資料。`,
+                ],
+            },
         ],
     },
     {

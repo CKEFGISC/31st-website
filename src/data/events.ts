@@ -27,25 +27,34 @@ export const upcomingEvents: Event[] = [
     {
         title: "寒訓",
         time: "一～二月",
-        image: "/images/events/2025_winter.jpg",
-        imageCaption: "2025 聯合寒訓",
+        image: "/images/events/2026_winter.jpg",
+        imageCaption: "2026 聯合寒訓",
         description:
             "建北電資聯合寒訓，簡稱寒訓。這將是學長姊們最後一個舉辦的大型活動，在寒訓間，會安排幾個神秘活動，到最後你一定會帶著感動的心回到溫暖的家中。",
     },
     {
         title: "春遊",
         time: "四～五月",
-        image: "/images/events/2025_spring.jpg",
-        imageCaption: "2025 聯合春遊",
+        image: "/images/events/2026_spring.jpg",
+        imageCaption: "2026 聯合春遊",
         description:
             "建北電資聯合春遊，簡稱春遊。這個活動是高一學弟妹的第一個任務，除了體驗幹部生活，也能與同屆增進感情。",
     },
     {
         title: "社展",
         time: "五～六月",
-        image: "/images/events/2025_exhibition.jpg",
-        imageCaption: "2025 聯合社展",
+        image: "/images/events/2026_exhibition.jpg",
+        imageCaption: "2026 聯合社展",
         description: "展中，我們將展現我們社團的學術力，發揮學術性社團的專長！",
+    },
+
+    {
+        title: "幹見",
+        time: "六～七月",
+        image: "/images/events/2026_oil.jpg",
+        imageCaption: "2026 聯合幹見",
+        description:
+            "新幹部上任後參加的第一個活動，也是上一屆幹部辦給下一屆幹部的最後一個活動。",
     },
 ];
 
@@ -54,16 +63,16 @@ export const pastEvents: Event[] = [
     {
         title: "茶會",
         time: "七月",
-        image: "/images/events/2025_tea.jpg",
-        imageCaption: "2025 聯合茶會",
+        image: "/images/events/2026_tea.jpg",
+        imageCaption: "2026 聯合茶會",
         description:
-            "建北電資聯合交接茶會。茶會中，我們廣邀各校資訊性社團的同學來參加。這也是建北電資主要的外交活動。除了社交外，這也是正式的幹部交接儀式，新的幹部上任了，也是學長姊們幹部生涯的尾聲。歡迎大家一起來見證幹部的世代交替！",
+            "建北電資聯合送舊茶會。茶會中，我們一同前往外縣市遊玩。除了遊玩外，這也是正式的幹部交接儀式，新的幹部上任了，也是學長姊們幹部生涯的尾聲。大家一起來見證幹部的世代交替！",
     },
     {
         title: "暑訓",
         time: "八月",
-        image: "/images/events/2025_summer.jpg",
-        imageCaption: "2025 聯合暑訓",
+        image: "/images/events/2026_summer.jpg",
+        imageCaption: "2026 聯合暑訓",
         description:
             "建北電資聯合暑訓，簡稱暑訓。這個活動是幹部接幹後辦的第一個大型活動，更是附有讓學弟妹認識我們的任務。活動內教授基本資訊技能、程式語言等，也安排許多增進感情的活動。現今英文名稱 Summer Camp 取自夏令營，代表了暑訓的可玩性。以前暑訓曾被稱為 Summer Train，更有訓練之意涵。",
     },
