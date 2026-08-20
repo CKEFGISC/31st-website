@@ -6,9 +6,15 @@ export const site = {
     ogImage: "/images/chicken_with_background.png",
     themeColor: "#f7dea5",
     generation: 31,
-    ckeisc: 45,
-    fgisc: 39,
+    ckeisc: 46,
+    fgisc: 40,
 } as const;
+
+/** 英文序數後綴，例如 31 -> "st"、46 -> "th"。 */
+export function ordinal(n: number): string {
+    if (n % 100 >= 11 && n % 100 <= 13) return "th";
+    return ["th", "st", "nd", "rd"][n % 10] ?? "th";
+}
 
 export type NavItem = {
     label: string;
@@ -34,23 +40,23 @@ export type SocialLink = {
 
 export const socialLinks: SocialLink[] = [
     {
-        title: "建中電研 45th Linktree",
-        href: "https://linktr.ee/ckeisc_45th",
+        title: "建中電研 46th Linktree",
+        href: "https://linktr.ee/ckeisc_46th",
         icon: "link",
     },
     {
-        title: "北一資研 39th Linktree",
-        href: "https://linktr.ee/fgisc39th",
+        title: "北一資研 40th Linktree",
+        href: "https://linktr.ee/fgisc40th",
         icon: "link",
     },
     {
-        title: "建中電研 45th Instagram",
-        href: "https://www.instagram.com/ckeisc_45th/",
+        title: "建中電研 46th Instagram",
+        href: "https://www.instagram.com/ckeisc_46th/",
         icon: "instagram",
     },
     {
-        title: "北一資研 39th Instagram",
-        href: "https://www.instagram.com/fgisc39th/",
+        title: "北一資研 40th Instagram",
+        href: "https://www.instagram.com/fgisc40th/",
         icon: "instagram",
     },
     {

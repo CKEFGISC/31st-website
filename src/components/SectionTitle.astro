@@ -2,15 +2,11 @@
 interface Props {
     id?: string;
 }
-
 const { id } = Astro.props;
 ---
 
-<div class="flex justify-center">
-    <h2
-        id={id}
-        class="bg-brand my-[1.6em] flex h-[2em] w-fit -skew-x-30 items-center justify-center px-[0.5em] text-[1.4em]"
-    >
-        <span class="skew-x-30"><slot /></span>
-    </h2>
+<div class="row">
+    <div class="section-title col-md-8 offset-md-2">
+        <h2 id={id}><slot /></h2>
+    </div>
 </div>

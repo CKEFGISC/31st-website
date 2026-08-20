@@ -12,23 +12,21 @@ const [ckeisc, fgisc] = clubs;
 <BaseLayout title="幹部">
     <TitleBar>幹部介紹</TitleBar>
 
-    <section class="pb-12">
-        <TeamSwitcher client:load labels={[ckeisc.label, fgisc.label]}>
-            <Fragment slot="ckeisc">
-                <Container class="flex flex-col items-center">
-                    {
-                        ckeisc.members.map((person) => (
+    <TeamSwitcher client:load labels={[ckeisc.label, fgisc.label]}>
+        <Fragment slot="ckeisc">
+            <Container class="flex flex-col items-center">
+                {
+                    ckeisc.members.map((person) => (
                             <Person person={person} />
-                        ))
-                    }
-                </Container>
-            </Fragment>
+                    ))
+                }
+            </Container>
+        </Fragment>
 
-            <Fragment slot="fgisc">
-                <Container class="flex flex-col items-center">
-                    {fgisc.members.map((person) => <Person person={person} />)}
-                </Container>
-            </Fragment>
-        </TeamSwitcher>
-    </section>
+        <Fragment slot="fgisc">
+            <Container class="flex flex-col items-center">
+                {fgisc.members.map((person) => <Person person={person} />)}
+            </Container>
+        </Fragment>
+    </TeamSwitcher>
 </BaseLayout>

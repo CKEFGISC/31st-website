@@ -8,46 +8,24 @@ interface Props {
 const { slides } = Astro.props;
 ---
 
-<div
-    class="border-line flex h-[33em] overflow-hidden rounded-lg border-[3px] max-sm:h-auto max-sm:flex-col max-sm:border-none"
->
-    <nav
-        aria-label="簡報列表"
-        class="thin-scrollbar my-[1.6em] ml-[0.6em] w-[24em] shrink-0 overflow-y-auto px-4 max-sm:hidden"
-    >
-        <ul class="flex flex-col">
-            {
-                slides.map((slide, i) => (
-                    <li>
-                        <a
-                            href={`#slide-${i}`}
-                            data-slide-link={i}
-                            class="mb-1.5 block rounded-lg p-2 transition-colors duration-200 aria-[current=true]:bg-sand"
-                        >
-                            {slide.title}
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
-
-    <div
-        class="border-line my-[1.6em] hidden rounded border-2 sm:block"
-        aria-hidden="true"
-    >
-    </div>
-
-    <div
-        id="slides-contents"
-        class="thin-scrollbar my-[1.6em] mr-[0.6em] flex-1 overflow-y-auto px-4 max-sm:m-1 max-sm:overflow-visible max-sm:px-0"
-    >
+<div class="slides-container">
+    <nav class="slides-list thin-scrollbar" aria-label="簡報列表">
         {
             slides.map((slide, i) => (
-                <section id={`slide-${i}`} data-slide={i}>
-                    <h3 class="my-4 text-lg font-semibold first:mt-0">
-                        {slide.title}
-                    </h3>
+                <a href={`#slide-${i}`} data-slide-link={i}>
+                    {slide.title}
+                </a>
+            ))
+        }
+    </nav>
+
+    <div class="slides-vertical-line" aria-hidden="true"></div>
+
+    <div id="slides-contents" class="slides-contents thin-scrollbar">
+        {
+            slides.map((slide, i) => (
+                <div id={`slide-${i}`} data-slide={i}>
+                    <h4>{slide.title}</h4>
                     <iframe
                         src={embedUrl(slide)}
                         title={slide.title}
@@ -56,13 +34,21 @@ const { slides } = Astro.props;
                         height="410"
                         allow="fullscreen"
                         allowfullscreen
-                        class="max-h-[50dvw] max-w-[98%] rounded-md"
+                        class="slides"
                     />
-                </section>
+                </div>
             ))
         }
     </div>
 </div>
+
+<style>
+    .slides {
+        border-radius: 6px;
+        max-width: 98%;
+        max-height: 50dvw;
+    }
+</style>
 
 <script>
     // highlight the deck currently scrolled into view

@@ -96,7 +96,7 @@ export default function MobileNav({ items, title, currentPath }: Props) {
                 </div>
 
                 <nav className="thin-scrollbar flex-1 overflow-y-auto px-5 py-4">
-                    <ul className="flex flex-col gap-5">
+                    <ul className="m-0 flex list-none flex-col gap-5 p-0">
                         {items.map((item) => (
                             <li key={item.href}>
                                 <a

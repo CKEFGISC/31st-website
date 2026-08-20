@@ -12,28 +12,40 @@ import {
 } from "~/data/events";
 
 const sections = [
-    { heading: "未來活動", events: upcomingEvents },
-    { heading: "已結束活動", events: pastEvents },
-    { heading: "不定期活動", events: irregularEvents },
-    { heading: "非本屆活動", events: otherEvents },
+    {
+        id: "alive",
+        groups: [
+            { heading: "未來活動", events: upcomingEvents },
+            { heading: "已結束活動", events: pastEvents },
+        ],
+    },
+    {
+        id: "planning",
+        groups: [
+            { heading: "不定期活動", events: irregularEvents },
+            { heading: "非本屆活動", events: otherEvents },
+        ],
+    },
 ];
 ---
 
 <BaseLayout title="活動">
     <TitleBar>活動介紹</TitleBar>
 
-    <section class="pb-12">
-        <Container>
-            {
-                sections.map((section) => (
-                    <>
-                        <SectionTitle>{section.heading}</SectionTitle>
-                        {section.events.map((event) => (
-                            <EventCard event={event} />
-                        ))}
-                    </>
-                ))
-            }
-        </Container>
-    </section>
+    {
+        sections.map((section) => (
+            <section id={section.id} class="events-page-section">
+                <Container>
+                    {section.groups.map((group) => (
+                        <>
+                            <SectionTitle>{group.heading}</SectionTitle>
+                            {group.events.map((event) => (
+                                <EventCard event={event} />
+                            ))}
+                        </>
+                    ))}
+                </Container>
+            </section>
+        ))
+    }
 </BaseLayout>

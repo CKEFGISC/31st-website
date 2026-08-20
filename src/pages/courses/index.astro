@@ -14,12 +14,12 @@ const groups = (await getGroupedCourses()).filter(
 <BaseLayout title="課程">
     <TitleBar>課程介紹</TitleBar>
 
-    <section class="pb-12">
+    <section id="courses">
         {
             groups.map((group) => (
                 <>
                     <SectionTitle>{group.heading}</SectionTitle>
-                    <Container>
+                    <Container class="py-1">
                         {group.courses.map((course) => (
                             <CourseCard course={course} />
                         ))}
@@ -29,3 +29,10 @@ const groups = (await getGroupedCourses()).filter(
         }
     </section>
 </BaseLayout>
+
+<style>
+    .py-1 {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
+</style>

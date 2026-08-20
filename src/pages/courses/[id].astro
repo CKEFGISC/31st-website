@@ -30,35 +30,29 @@ const { Content } = await render(course);
 <BaseLayout title={shortTitle}>
     <TitleBar>課程介紹</TitleBar>
 
-    <section class="pb-12">
+    <section id="individual-course">
         <Container>
-            <div class="mb-8 flex flex-col gap-5 lg:flex-row">
-                <img
-                    src={image}
-                    alt={title}
-                    class="border-line h-fit w-[600px] max-w-[80dvw] shrink-0 rounded-[10px] border-[3px] lg:w-[400px]"
-                />
-                <div class="md">
-                    <h2 class="mb-2 text-3xl font-semibold">{title}</h2>
-                    {
-                        instructors.length > 0 && (
-                            <p class="mb-3">講師：{instructors.join("、")}</p>
-                        )
-                    }
+            <div class="course">
+                <img src={image} alt={title} />
+                <div class="description md">
+                    <h1>{title}</h1>
+                    {instructors.length > 0 && <p>講師：{instructors.join("、")}</p>}
                     <Content />
                 </div>
             </div>
 
-            <a href="/courses" class="btn bg-paper-soft hover:bg-line">
-                <Icon name="arrow-left" size="1em" />
-                返回
+            <a href="/courses">
+                <button class="btn btn-light mt-2">
+                    <Icon name="arrow-left" size="1em" />
+                    返回&nbsp;
+                </button>
             </a>
         </Container>
     </section>
 
     {
         slides.length > 0 && (
-            <section class="pb-12">
+            <section id="slides">
                 <SectionTitle>簡報區</SectionTitle>
                 <Container>
                     <SlidesPanel slides={slides} />
@@ -67,3 +61,13 @@ const { Content } = await render(course);
         )
     }
 </BaseLayout>
+
+<style>
+    .mt-2 {
+        margin-top: 0.5rem;
+    }
+    button {
+        display: inline-flex;
+        align-items: center;
+    }
+</style>

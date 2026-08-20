@@ -13,12 +13,12 @@ const { Content } = await render(entry);
 <BaseLayout title={entry.data.title}>
     <TitleBar>{entry.data.title}</TitleBar>
 
-    <section class="pb-12">
+    <section id="about">
         <Container>
-            <div
-                class="md bg-paper-soft rounded-[10px] px-4 py-5 md:px-12 md:py-8"
-            >
-                <Content />
+            <div class="text-paragraph">
+                <div class="md">
+                    <Content />
+                </div>
             </div>
         </Container>
     </section>

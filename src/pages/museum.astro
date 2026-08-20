@@ -10,47 +10,52 @@ import { museumSections } from "~/data/museum";
 <BaseLayout title="博物館">
     <TitleBar>歷屆博物館</TitleBar>
 
-    <section class="pb-12">
-        <Container class="flex flex-col items-center">
-            {
-                museumSections.map((section) => (
-                    <>
-                        <SectionTitle>{section.heading}</SectionTitle>
+    <section id="museum">
+        {
+            museumSections.map((section) => (
+                <>
+                    <SectionTitle>{section.heading}</SectionTitle>
+                    <Container>
                         {section.entries.map((entry) => (
-                            <article
-                                class="mb-12 flex w-[991px] max-w-[85dvw] flex-col md:flex-row"
-                                data-reveal
-                            >
-                                <img
-                                    src={entry.image}
-                                    alt=""
-                                    loading="lazy"
-                                    width="420"
-                                    class="border-line mb-4 max-w-[86dvw] rounded-[3px] border-2 object-cover md:mb-0 md:w-[420px] md:rounded-md md:border-4"
-                                />
-                                <div
-                                    class="border-line mx-4 hidden rounded border-2 md:block"
-                                    aria-hidden="true"
-                                />
-                                <div class="md">
+                            <div class="museum-item">
+                                <img src={entry.image} alt="" loading="lazy" />
+                                <div class="vertical-line" />
+                                <div>
                                     <a
                                         href={entry.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        class="inline-flex items-center gap-2 hover:underline"
                                     >
-                                        <h3 set:html={entry.title} />
-                                        <Icon name="external" size="0.75em" />
+                                        <h4>
+                                            <span set:html={entry.title} />
+                                            &nbsp;&nbsp;
+                                            <Icon
+                                                name="external"
+                                                size="0.75em"
+                                            />
+                                        </h4>
                                     </a>
                                     {entry.body.map((paragraph) => (
                                         <p set:html={paragraph} />
                                     ))}
                                 </div>
-                            </article>
+                            </div>
                         ))}
-                    </>
-                ))
-            }
-        </Container>
+                    </Container>
+                </>
+            ))
+        }
     </section>
 </BaseLayout>
+
+<style>
+    #museum :global(.site-container) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h4 {
+        display: flex;
+        align-items: center;
+    }
+</style>

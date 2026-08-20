@@ -18,7 +18,7 @@ export default function TeamSwitcher({ labels, ckeisc, fgisc }: Props) {
     const panels = [ckeisc, fgisc];
     const [index, setIndex] = useState(0);
     const [height, setHeight] = useState<number | undefined>(undefined);
-    const panelRefs = useRef<Array<HTMLDivElement | null>>([]);
+    const panelRefs = useRef<Array<HTMLElement | null>>([]);
 
     // keep the viewport exactly as tall as the visible panel
     useEffect(() => {
@@ -30,21 +30,24 @@ export default function TeamSwitcher({ labels, ckeisc, fgisc }: Props) {
 
         const observer = new ResizeObserver(sync);
         observer.observe(panel);
+
+        window.dispatchEvent(new Event("reveal:check"));
+
         return () => observer.disconnect();
     }, [index]);
 
     return (
         <>
-            <div className="flex justify-center">
+            <section id="team-switcher" className="team-switch-wrap">
                 <div
                     role="tablist"
                     aria-label="社團"
-                    className="border-line relative flex h-[34px] w-[200px] rounded-md border select-none"
+                    className="team-toggle-switch"
                 >
                     <span
                         aria-hidden="true"
-                        className="bg-line absolute inset-y-[3px] w-[calc(50%-3px)] rounded transition-[left] duration-200 ease-out"
-                        style={{ left: index === 0 ? 3 : "50%" }}
+                        className="switch-rect"
+                        style={{ left: index === 0 ? 3 : "calc(50% - 3px)" }}
                     />
                     {labels.map((label, i) => (
                         <button
@@ -55,24 +58,26 @@ export default function TeamSwitcher({ labels, ckeisc, fgisc }: Props) {
                             aria-selected={i === index}
                             aria-controls={`team-panel-${i}`}
                             onClick={() => setIndex(i)}
-                            className="relative z-10 flex-1 cursor-pointer text-sm font-semibold"
+                            className="switch-label"
+                            data-active={i === index}
                         >
                             {label}
                         </button>
                     ))}
                 </div>
-            </div>
+            </section>
 
             <div
-                className="mt-8 overflow-hidden transition-[height] duration-500 ease-out"
+                className="team-section-anchor"
                 style={{ height }}
+                data-index={index}
             >
                 <div
-                    className="flex w-[200%] items-start transition-transform duration-500 ease-out"
+                    className="team-track"
                     style={{ transform: `translateX(-${index * 50}%)` }}
                 >
                     {panels.map((panel, i) => (
-                        <div
+                        <section
                             key={i}
                             id={`team-panel-${i}`}
                             role="tabpanel"
@@ -82,10 +87,14 @@ export default function TeamSwitcher({ labels, ckeisc, fgisc }: Props) {
                             ref={(element) => {
                                 panelRefs.current[i] = element;
                             }}
-                            className="w-1/2"
+                            className={
+                                i === index
+                                    ? "team-panel"
+                                    : "team-panel inactive"
+                            }
                         >
                             {panel}
-                        </div>
+                        </section>
                     ))}
                 </div>
             </div>

@@ -34,31 +34,28 @@ const cards = [
 ---
 
 <BaseLayout>
-    <section id="intro" class="pb-12">
-        <div class="hero flex h-[90vh] items-center max-md:h-[calc(20vh+40vw)]">
+    <section id="intro">
+        <div class="jumbotron">
             <Container>
-                <h1
-                    class="text-paper my-3.5 text-[65px] font-semibold md:text-[75px]"
-                >
-                    {site.shortName}
-                </h1>
-                <h2 class="text-paper text-base font-normal md:text-[22px]">
-                    一個跨越 <span>{site.generation}</span> 年的大家庭
-                </h2>
-                <a
-                    href="/about"
-                    class="text-brand border-brand hover:bg-brand hover:text-ink mt-5 inline-block rounded-full border-2 px-5 py-2.5 font-medium transition-colors"
-                >
-                    關於我們
-                </a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>{site.shortName}</h1>
+                        <h2>
+                            一個跨越 <span>{site.generation}</span> 年的大家庭
+                        </h2>
+                        <a href="/about" class="btn btn-outline-warning">
+                            關於我們
+                        </a>
+                    </div>
+                </div>
             </Container>
         </div>
     </section>
 
-    <section id="map" class="pb-12">
+    <section id="map">
         <Container>
             <SectionTitle>網站地圖</SectionTitle>
-            <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-4">
+            <div class="row">
                 {cards.map((card) => <Card {...card} />)}
             </div>
         </Container>
@@ -66,7 +63,12 @@ const cards = [
 </BaseLayout>
 
 <style>
-    .hero {
+    #intro > .jumbotron {
+        /* fills what is left of the screen, so the header stays visible */
+        height: calc(100dvh - var(--header-h, 74px));
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
         background-color: var(--color-ink);
         background-image:
             linear-gradient(rgb(0 0 0 / 0.5), rgb(0 0 0 / 0.5)),
@@ -76,15 +78,44 @@ const cards = [
         background-repeat: no-repeat;
     }
 
-    h1 {
+    #intro h1 {
+        margin: 14px 0;
+        color: var(--color-paper);
+        font-size: 75px;
+        font-weight: 600;
         text-shadow: 0 0 10px var(--color-ink);
-        animation: rise 1s both;
+        animation:
+            firstSlide 1s,
+            firstFade 1.25s;
     }
-    h2 {
-        animation: rise 1s 0.15s both;
+
+    #intro h2 {
+        color: var(--color-paper);
+        font-size: 22px;
+        font-weight: 400;
+        animation:
+            mainSlide 1s,
+            mainFade 1.5s;
     }
-    a {
+
+    #intro .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        border-width: 2px;
+        border-radius: 30px;
+        font-weight: 500;
         text-shadow: 0 0 3px var(--color-brand);
-        animation: rise 1.25s 0.3s both;
+        animation:
+            mainSlide 1.25s,
+            mainFade 1.75s;
+    }
+
+    @media (max-width: 768px) {
+        #intro h1 {
+            font-size: 65px;
+        }
+        #intro h2 {
+            font-size: 16px;
+        }
     }
 </style>

@@ -1,8 +1,8 @@
 ---
 import Icon from "./Icon.astro";
-import { site, socialLinks } from "~/data/site";
+import { ordinal, site, socialLinks } from "~/data/site";
 
-const copyright = `Copyright © ${new Date().getFullYear()} CKEFGISC ${site.shortName} ${site.generation}st`;
+const copyright = `Copyright © ${new Date().getFullYear()} CKEFGISC ${site.shortName} ${site.generation}${ordinal(site.generation)}`;
 ---
 
 <footer
@@ -10,7 +10,7 @@ const copyright = `Copyright © ${new Date().getFullYear()} CKEFGISC ${site.shor
 >
     <small>{copyright}</small>
 
-    <ul class="flex items-center gap-4">
+    <ul class="m-0 flex list-none items-center gap-4 p-0">
         {
             socialLinks.map((link) => (
                 <li>
@@ -32,7 +32,7 @@ const copyright = `Copyright © ${new Date().getFullYear()} CKEFGISC ${site.shor
 
 <style>
     footer {
-        animation: fade 1.25s both;
+        animation: mainFade 1.25s;
         padding-bottom: calc(1rem + env(safe-area-inset-bottom));
     }
 </style>

@@ -14,29 +14,29 @@ const paragraphs = summary
     .filter(Boolean);
 ---
 
-<article
-    class:list={["mb-12 flex flex-col gap-5 lg:flex-row", `accent-${accent}`]}
-    data-reveal
->
-    <img
-        src={image}
-        alt={title}
-        loading="lazy"
-        class="border-line h-fit w-[600px] max-w-[80dvw] shrink-0 rounded-[10px] border-[3px] lg:w-[400px]"
-    />
+<div class:list={["course", `accent-${accent}`]} data-reveal>
+    <img src={image} alt={title} loading="lazy" />
 
-    <div class="md">
-        <h3 class="mb-2 text-2xl font-semibold">{title}</h3>
-        {
-            instructors.length > 0 && (
-                <p class="mb-3">講師：{instructors.join("、")}</p>
-            )
-        }
+    <div class="description md">
+        <h1>{title}</h1>
+        {instructors.length > 0 && <p>講師：{instructors.join("、")}</p>}
         {paragraphs.map((paragraph) => <p>{paragraph}</p>)}
 
-        <a href={`/courses/${course.id}`} class="btn btn-accent mt-2">
-            查看更多
-            <Icon name="arrow-right" size="1em" />
+        <a href={`/courses/${course.id}`}>
+            <button class="btn btn-accent mt-2">
+                查看更多&nbsp;
+                <Icon name="arrow-right" size="1em" />
+            </button>
         </a>
     </div>
-</article>
+</div>
+
+<style>
+    .mt-2 {
+        margin-top: 0.5rem;
+    }
+    button {
+        display: inline-flex;
+        align-items: center;
+    }
+</style>

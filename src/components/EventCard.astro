@@ -8,26 +8,31 @@ interface Props {
 const { event } = Astro.props;
 ---
 
-<article class="mb-12 flex flex-col gap-6 md:flex-row md:gap-10" data-reveal>
-    <div class="relative mx-auto w-fit shrink-0 md:mx-0">
-        <img
-            src={event.image ?? "/images/events/404.png"}
-            alt=""
-            loading="lazy"
-            class="border-line w-80 max-w-[90dvw] rounded-2xl border-[3px]"
-        />
-        {
-            event.imageCaption && (
-                <p class="absolute bottom-4 left-8 rounded-full bg-white/95 px-3.5 py-1 text-base font-light">
-                    {event.imageCaption}
-                </p>
-            )
-        }
+<div class="row" data-reveal>
+    <div class="col-md-4 offset-md-1 text-center">
+        <figure class="event-figure">
+            <img
+                src={event.image ?? "/images/events/404.png"}
+                alt=""
+                loading="lazy"
+            />
+            {event.imageCaption && <figcaption>{event.imageCaption}</figcaption>}
+        </figure>
     </div>
+    <div class="col-md-6 event-body">
+        <h3>{event.title}</h3>
+        <span class="event-time">舉辦時間：{event.time}</span>
+        <p>{event.description}</p>
+    </div>
+</div>
 
-    <div>
-        <h3 class="text-[28px] font-normal">{event.title}</h3>
-        <p class="text-sm">舉辦時間：{event.time}</p>
-        <p class="mt-2 text-lg leading-relaxed">{event.description}</p>
-    </div>
-</article>
+<style>
+    .text-center {
+        text-align: center;
+    }
+    /* a block box spanning the column, like the old .imgandtext —
+       the caption offsets are measured from its left edge */
+    .event-figure {
+        margin: 0;
+    }
+</style>

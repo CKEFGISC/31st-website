@@ -1,57 +1,92 @@
 ---
 import Logo from "./Logo.astro";
 import MobileNav from "./MobileNav.tsx";
-import { navItems, site } from "~/data/site";
+import { navItems, ordinal, site } from "~/data/site";
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <header id="site-header" class="bg-paper sticky top-0 z-40">
-    <div
-        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-3 py-1"
-    >
-        <Logo />
+    <div class="site-container">
+        <nav class="navbar" aria-label="主選單">
+            <div class="navbar-inner">
+                <Logo />
 
-        <nav class="hidden lg:block" aria-label="主選單">
-            <ul class="flex items-end gap-8 whitespace-nowrap">
-                {
-                    navItems.map((item) => (
-                        <li>
-                            <a
-                                href={item.href}
-                                aria-current={
-                                    currentPath === item.href
-                                        ? "page"
-                                        : undefined
-                                }
-                                target={item.external ? "_blank" : undefined}
-                                rel={item.external ? "noreferrer" : undefined}
-                                class="hover:text-brand aria-[current=page]:decoration-brand transition-colors aria-[current=page]:underline aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-8"
-                            >
-                                {item.label}
-                            </a>
-                        </li>
-                    ))
-                }
-            </ul>
+                <ul class="navbar-nav">
+                    {
+                        navItems.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="nav-link"
+                                    aria-current={
+                                        currentPath === item.href
+                                            ? "page"
+                                            : undefined
+                                    }
+                                    target={item.external ? "_blank" : undefined}
+                                    rel={item.external ? "noreferrer" : undefined}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                {/* only narrow viewports need the drawer, so desktop ships no React */}
+                <MobileNav
+                    client:media="(max-width: 991.98px)"
+                    items={navItems}
+                    title={`CKEFGISC ${site.generation}${ordinal(site.generation)}`}
+                    currentPath={currentPath}
+                />
+            </div>
         </nav>
-
-        {/* only narrow viewports need the drawer, so desktop ships no React */}
-        <MobileNav
-            client:media="(max-width: 1023.98px)"
-            items={navItems}
-            title={`CKEFGISC ${site.generation}th`}
-            currentPath={currentPath}
-        />
     </div>
 </header>
 
 <style>
     header {
+        animation: mainFade 0.75s;
         transition: box-shadow 200ms ease;
     }
 
-    nav li {
+    /* Bootstrap navbar metrics, which the old header was built on */
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-inner {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.75rem;
+    }
+
+    .navbar-nav {
+        display: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        align-items: flex-end;
+        white-space: nowrap;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-nav {
+            display: flex;
+        }
+    }
+
+    .navbar-nav li {
+        margin: 0 16px;
         font-size: 20px;
         font-weight: 600;
         transition:
@@ -59,11 +94,23 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
             margin 200ms ease;
     }
 
-    /* toggled by src/scripts/header.ts once the page is scrolled */
-    header:global(.header-shrink) {
-        box-shadow: 0 1px 6px rgb(54 54 54 / 0.12);
+    /* .navbar-expand-lg raises the horizontal padding at >=lg */
+    .nav-link {
+        display: block;
+        padding: 0.5rem;
+        color: rgb(0 0 0 / 0.65);
+        transition: color 0.15s ease-in-out;
     }
-    header:global(.header-shrink) nav li {
+    .nav-link:hover {
+        color: rgb(0 0 0 / 0.8);
+    }
+
+    /* toggled by src/scripts/header.ts once the page is scrolled */
+    header:global(.header-shrink) .navbar-nav li {
+        margin: 0 15px;
         font-size: 18px;
+    }
+    header:global(.header-shrink) .nav-link {
+        padding: 5px;
     }
 </style>
