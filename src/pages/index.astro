@@ -79,7 +79,8 @@ const cards = [
         position: relative;
         height: calc(100dvh - var(--header-h, 74px));
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        /* align-items: center; */
         margin-bottom: 0;
         overflow: hidden;
         background-color: var(--color-ink);
@@ -133,6 +134,15 @@ const cards = [
     }
 
     @media (max-width: 768px) {
+        /* show the whole photo instead of cropping it to the viewport: the
+           section is exactly as tall as the full-width image (4000x2661), so
+           nothing is cut off. Below the 300px floor -- where the whole photo
+           would be too short to hold the text -- the image goes back to
+           filling the box and only its left and right edges are cropped. */
+        #intro > .jumbotron {
+            height: max(300px, calc(100vw * 2661 / 4000));
+        }
+
         #intro h1 {
             font-size: 65px;
         }
