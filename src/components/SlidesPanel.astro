@@ -1,0 +1,95 @@
+---
+import { embedUrl, type Course } from "~/lib/courses";
+
+interface Props {
+    slides: Course["data"]["slides"];
+}
+
+const { slides } = Astro.props;
+---
+
+<div class="slides-container">
+    <nav class="slides-list thin-scrollbar" aria-label="簡報列表">
+        {
+            slides.map((slide, i) => (
+                <a href={`#slide-${i}`} data-slide-link={i}>
+                    {slide.title}
+                </a>
+            ))
+        }
+    </nav>
+
+    <div class="slides-vertical-line" aria-hidden="true"></div>
+
+    <div id="slides-contents" class="slides-contents thin-scrollbar">
+        {
+            slides.map((slide, i) => (
+                <div id={`slide-${i}`} data-slide={i}>
+                    <h4>{slide.title}</h4>
+                    <iframe
+                        src={embedUrl(slide)}
+                        title={slide.title}
+                        loading="lazy"
+                        width="560"
+                        height="410"
+                        allow="fullscreen"
+                        allowfullscreen
+                        class="slides"
+                    />
+                </div>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .slides {
+        border-radius: 6px;
+        max-width: 98%;
+        max-height: 50dvw;
+    }
+</style>
+
+<script>
+    // highlight the deck currently scrolled into view
+    const pane = document.getElementById("slides-contents");
+    const links = document.querySelectorAll<HTMLAnchorElement>(
+        "[data-slide-link]",
+    );
+
+    if (pane && links.length > 0) {
+        const setActive = (index: number) => {
+            for (const link of links) {
+                link.setAttribute(
+                    "aria-current",
+                    String(link.dataset.slideLink === String(index)),
+                );
+            }
+        };
+
+        setActive(0);
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visible = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort(
+                        (a, b) =>
+                            a.boundingClientRect.top - b.boundingClientRect.top,
+                    )[0];
+                if (visible instanceof IntersectionObserverEntry) {
+                    setActive(
+                        Number(
+                            (visible.target as HTMLElement).dataset.slide ?? 0,
+                        ),
+                    );
+                }
+            },
+            { root: pane, threshold: 0.1 },
+        );
+
+        for (const section of pane.querySelectorAll("[data-slide]")) {
+            observer.observe(section);
+        }
+    }
+</script>

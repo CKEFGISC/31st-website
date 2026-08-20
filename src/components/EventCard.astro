@@ -1,0 +1,44 @@
+---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
+import type { Event } from "~/data/events";
+
+interface Props {
+    event: Event;
+}
+
+const { event } = Astro.props;
+---
+
+<div class="row" data-reveal>
+    <div class="col-md-4 offset-md-1 text-center">
+        <figure class="event-figure">
+            <Image
+                src={asset(event.image ?? "/images/events/404.png")}
+                alt=""
+                width={840}
+                widths={[252, 320, 420, 640, 840]}
+                sizes="(max-width: 536px) min(360px, 90vw), (max-width: 767px) 420px, (max-width: 991px) 252px, 320px"
+                loading="lazy"
+            />
+            {event.imageCaption && <figcaption>{event.imageCaption}</figcaption>}
+        </figure>
+    </div>
+    <div class="col-md-6 event-body">
+        <h3>{event.title}</h3>
+        <span class="event-time">舉辦時間：{event.time}</span>
+        <p>{event.description}</p>
+    </div>
+</div>
+
+<style>
+    .text-center {
+        text-align: center;
+    }
+    /* a block box spanning the column, like the old .imgandtext —
+       the caption offsets are measured from its left edge */
+    .event-figure {
+        margin: 0;
+    }
+</style>

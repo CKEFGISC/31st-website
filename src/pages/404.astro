@@ -1,0 +1,16 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+---
+
+<BaseLayout title="找不到頁面">
+    <TitleBar>404</TitleBar>
+
+    <section class="pb-12">
+        <Container class="flex flex-col items-center gap-4 py-8 text-center">
+            <p class="text-xl">找不到這個頁面 QQ</p>
+            <a href="/" class="btn btn-accent accent-brand">回到首頁</a>
+        </Container>
+    </section>
+</BaseLayout>

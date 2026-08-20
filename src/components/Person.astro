@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
+import type { Person } from "~/data/team";
+
+interface Props {
+    person: Person;
+}
+
+const { person } = Astro.props;
+---
+
+<div class="person" data-reveal>
+    <div class="person-photo">
+        <Image
+            src={asset(person.photo)}
+            alt={person.name}
+            width={500}
+            widths={[250, 500]}
+            sizes="250px"
+            loading="lazy"
+        />
+        {
+            person.photoAlt && (
+                <Image
+                    src={asset(person.photoAlt)}
+                    alt=""
+                    aria-hidden="true"
+                    width={500}
+                    widths={[250, 500]}
+                    sizes="250px"
+                    loading="lazy"
+                    class="hover-to-show"
+                />
+            )
+        }
+    </div>
+
+    <div class="description">
+        <h4>{person.role}&nbsp;─&nbsp;</h4>
+        <h2>{person.name}</h2>
+
+        <p class="person-tags">
+            {
+                person.tags.map((tag, i) => (
+                    <>
+                        <span class="person-tag">#{tag}</span>
+                        {i + 1 !== person.tags.length && <>,&nbsp;&nbsp;</>}
+                    </>
+                ))
+            }
+        </p>
+
+        {person.description.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+</div>
+
+<style>
+    .person-photo {
+        position: relative;
+    }
+    .person-photo img {
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    h4 {
+        margin-bottom: 0.5rem;
+    }
+    h2 {
+        margin-bottom: 1rem;
+        margin-left: 30px;
+    }
+</style>

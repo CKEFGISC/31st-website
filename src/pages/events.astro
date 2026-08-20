@@ -1,0 +1,51 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Container from "~/components/Container.astro";
+import TitleBar from "~/components/TitleBar.astro";
+import SectionTitle from "~/components/SectionTitle.astro";
+import EventCard from "~/components/EventCard.astro";
+import {
+    upcomingEvents,
+    pastEvents,
+    irregularEvents,
+    otherEvents,
+} from "~/data/events";
+
+const sections = [
+    {
+        id: "alive",
+        groups: [
+            { heading: "未來活動", events: upcomingEvents },
+            { heading: "已結束活動", events: pastEvents },
+        ],
+    },
+    {
+        id: "planning",
+        groups: [
+            { heading: "不定期活動", events: irregularEvents },
+            { heading: "非本屆活動", events: otherEvents },
+        ],
+    },
+];
+---
+
+<BaseLayout title="活動">
+    <TitleBar>活動介紹</TitleBar>
+
+    {
+        sections.map((section) => (
+            <section id={section.id} class="events-page-section">
+                <Container>
+                    {section.groups.map((group) => (
+                        <>
+                            <SectionTitle>{group.heading}</SectionTitle>
+                            {group.events.map((event) => (
+                                <EventCard event={event} />
+                            ))}
+                        </>
+                    ))}
+                </Container>
+            </section>
+        ))
+    }
+</BaseLayout>

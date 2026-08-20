@@ -1,0 +1,1027 @@
+@import "tailwindcss";
+
+/* Tailwind scans these for class names (markdown content included). */
+@source "../**/*.{astro,ts,tsx,md}";
+
+/* ------------------------------------------------------------------ *\
+   Design tokens
+   Ported from the old src/index.scss + src/utils/Colors.scss
+\* ------------------------------------------------------------------ */
+
+@theme {
+    /* brand palette */
+    --color-brand: #feca50;
+    --color-brand-soft: #f7dea5;
+    --color-sand: #e7e1d7;
+    --color-paper: #f8f8f7;
+    --color-paper-soft: #f1f0ef;
+    --color-ink: #363636;
+    --color-line: #e4e2de;
+
+    /* body copy colour, matching the old Bootstrap default */
+    --color-body: #212529;
+
+    /* accents, used for per-course buttons */
+    --color-crimson: #dc143c;
+    --color-gamboge: #e49b0f;
+    --color-mango: #f4bb44;
+    --color-iris: #5d3fd3;
+    --color-orchid: #da70d6;
+    --color-kelly: #4cbb17;
+    --color-papaya: #ffefd5;
+    --color-warning: #ffc107;
+
+    /* typography — the old site kept Bootstrap's native stack for body
+       copy and only used Noto Sans TC for headings */
+    --font-sans:
+        system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+        "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-heading: "Noto Sans TC", sans-serif;
+    --font-mono: "Space Mono", ui-monospace, SFMono-Regular, monospace;
+
+    /* motion — the original four keyframes, unchanged */
+    @keyframes firstSlide {
+        0% {
+            transform: translateY(1200px);
+        }
+        20% {
+            transform: translateY(80px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
+    @keyframes firstFade {
+        0% {
+            opacity: 0;
+        }
+        20% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes mainSlide {
+        0% {
+            transform: translate3d(0, 1200px, 0);
+        }
+        20% {
+            transform: translate3d(0, 120px, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    @keyframes mainFade {
+        0% {
+            opacity: 0;
+        }
+        40% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Base
+
+   Tailwind's Preflight strips heading sizes, list markers and block
+   margins. The old site was built on top of Bootstrap's Reboot, so the
+   values it relied on are restored here — otherwise every heading and
+   paragraph shifts.
+\* ------------------------------------------------------------------ */
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+        /* keep anchor targets clear of the sticky header */
+        scroll-padding-top: 6rem;
+        background: var(--color-paper);
+    }
+
+    body {
+        display: flex;
+        min-height: 100dvh;
+        flex-direction: column;
+        background: var(--color-paper);
+        color: var(--color-body);
+        font-family: var(--font-sans);
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        font-family: var(--font-heading);
+        font-weight: 500;
+        line-height: 1.2;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.75rem;
+    }
+    h4 {
+        font-size: 1.5rem;
+    }
+    h5 {
+        font-size: 1.25rem;
+    }
+    h6 {
+        font-size: 1rem;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    ul,
+    ol {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+    }
+    ul {
+        list-style: disc;
+    }
+    ol {
+        list-style: decimal;
+    }
+    ul ul {
+        list-style: circle;
+    }
+    :is(ul, ol) :is(ul, ol) {
+        margin-bottom: 0;
+    }
+
+    blockquote {
+        margin: 0 0 1rem;
+    }
+
+    /* the old Home.scss shipped this globally, so every page inherited it */
+    section {
+        padding-bottom: 3em;
+    }
+
+    small {
+        font-size: 0.875em;
+    }
+
+    b,
+    strong {
+        font-weight: bolder;
+    }
+
+    img {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* Preflight sets svg { display: block }; inline icons need the default */
+    svg {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    a {
+        color: var(--color-ink);
+        text-decoration: none;
+    }
+
+    ::selection {
+        background: #e2d7c0aa;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-ink);
+        outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        html {
+            scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Layout primitives
+
+   The container widths and the 12-column row/col maths are Bootstrap's;
+   the old layout is built on them, so they are reproduced verbatim here
+   rather than approximated with Tailwind's own scale.
+\* ------------------------------------------------------------------ */
+
+@layer components {
+    .site-container {
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+    @media (min-width: 576px) {
+        .site-container {
+            max-width: 540px;
+        }
+    }
+    @media (min-width: 768px) {
+        .site-container {
+            max-width: 720px;
+        }
+    }
+    @media (min-width: 992px) {
+        .site-container {
+            max-width: 960px;
+        }
+    }
+    @media (min-width: 1200px) {
+        .site-container {
+            max-width: 1140px;
+        }
+    }
+    @media (min-width: 1400px) {
+        .site-container {
+            max-width: 1320px;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -0.75rem;
+        margin-left: -0.75rem;
+    }
+    .row > * {
+        flex-shrink: 0;
+        width: 100%;
+        max-width: 100%;
+        padding-right: 0.75rem;
+        padding-left: 0.75rem;
+    }
+
+    @media (min-width: 768px) {
+        .col-md-3 {
+            width: 25%;
+        }
+        .col-md-4 {
+            width: 33.33333333%;
+        }
+        .col-md-6 {
+            width: 50%;
+        }
+        .col-md-8 {
+            width: 66.66666667%;
+        }
+        .col-md-12 {
+            width: 100%;
+        }
+        .offset-md-1 {
+            margin-left: 8.33333333%;
+        }
+        .offset-md-2 {
+            margin-left: 16.66666667%;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Buttons & cards
+\* ------------------------------------------------------------------ */
+
+@layer components {
+    .btn {
+        display: inline-block;
+        padding: 0.375rem 0.75rem;
+        border: 1px solid transparent;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        transition:
+            color 0.15s ease-in-out,
+            background-color 0.15s ease-in-out,
+            border-color 0.15s ease-in-out;
+    }
+
+    /* per-course accents; the hover/active shades match the old
+       Sass darken()/lighten() output exactly */
+    .btn-accent {
+        background-color: var(--accent);
+        border-color: var(--accent-dark);
+        color: var(--accent-fg);
+    }
+    .btn-accent:hover {
+        background-color: var(--accent-dark);
+        border-color: var(--accent-darker);
+        color: var(--accent-fg);
+    }
+    .btn-accent:active {
+        background-color: var(--accent-light);
+        border-color: var(--accent);
+        box-shadow: inset 0 3px 5px rgb(0 0 0 / 0.125);
+    }
+
+    .accent-crimson {
+        --accent: #dc143c;
+        --accent-dark: #c51236;
+        --accent-darker: #ad102f;
+        --accent-light: #eb1f48;
+        --accent-fg: var(--color-paper);
+    }
+    .accent-gamboge {
+        --accent: #e49b0f;
+        --accent-dark: #cc8b0d;
+        --accent-darker: #b47a0c;
+        --accent-light: #f0a81c;
+        --accent-fg: var(--color-paper);
+    }
+    .accent-mango {
+        --accent: #f4bb44;
+        --accent-dark: #f3b22c;
+        --accent-darker: #f1a914;
+        --accent-light: #f5c45c;
+        --accent-fg: var(--color-ink);
+    }
+    .accent-iris {
+        --accent: #5d3fd3;
+        --accent-dark: #4e2eca;
+        --accent-darker: #462ab5;
+        --accent-light: #6f54d8;
+        --accent-fg: var(--color-paper);
+    }
+    .accent-orchid {
+        --accent: #da70d6;
+        --accent-dark: #d55cd0;
+        --accent-darker: #d047ca;
+        --accent-light: #df84dc;
+        --accent-fg: var(--color-ink);
+    }
+    /* Bootstrap's .btn-success, which the 資安 course used */
+    .accent-success {
+        --accent: #198754;
+        --accent-dark: #157347;
+        --accent-darker: #146c43;
+        --accent-light: #157347;
+        --accent-fg: #fff;
+    }
+    .accent-kelly {
+        --accent: #4cbb17;
+        --accent-dark: #43a414;
+        --accent-darker: #3a8e11;
+        --accent-light: #55d21a;
+        --accent-fg: var(--color-paper);
+    }
+    .accent-papaya {
+        --accent: #ffefd5;
+        --accent-dark: #ffe5bc;
+        --accent-darker: #ffdca2;
+        --accent-light: #fff9ef;
+        --accent-fg: var(--color-ink);
+    }
+
+    /* the old hero button was Bootstrap's .btn-outline-warning */
+    .btn-outline-warning {
+        border-color: var(--color-warning);
+        color: var(--color-warning);
+    }
+    .btn-outline-warning:hover {
+        background-color: var(--color-warning);
+        color: #000;
+    }
+
+    .btn-light {
+        background-color: #f8f9fa;
+        border-color: #f8f9fa;
+        color: #000;
+    }
+    .btn-light:hover {
+        background-color: #d3d4d5;
+        border-color: #c6c7c8;
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgb(0 0 0 / 0.175);
+        border-radius: 0.375rem;
+    }
+    .card-img-top {
+        width: 100%;
+        border-top-left-radius: calc(0.375rem - 1px);
+        border-top-right-radius: calc(0.375rem - 1px);
+    }
+    .card-body {
+        flex: 1 1 auto;
+        padding: 1rem;
+    }
+    .card-title {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Site components
+\* ------------------------------------------------------------------ */
+
+@layer components {
+    .section-title {
+        display: flex;
+        margin: 1.6em auto;
+        height: 2em;
+        width: fit-content;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-brand);
+        font-size: 1.4em;
+        transform: skewX(-30deg);
+    }
+    .section-title > * {
+        margin: auto 0.5em;
+        font-family: var(--font-sans);
+        font-size: 1em;
+        font-weight: 400;
+        line-height: 1.5;
+        transform: skewX(30deg);
+    }
+
+    .title-bar {
+        width: 100%;
+        margin-bottom: 1em;
+        padding: 0.8em;
+        background-color: var(--color-sand);
+        color: var(--color-ink);
+        font-size: 2em;
+        text-align: center;
+    }
+    .title-bar > * {
+        margin: 0;
+        font-family: var(--font-sans);
+        font-size: 1em;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    .text-paragraph {
+        padding: 2em 3em;
+        border-radius: 10px;
+        background: var(--color-paper-soft);
+    }
+    @media (max-width: 768px) {
+        .text-paragraph {
+            padding: 20px 10px;
+        }
+        .text-paragraph ul {
+            padding-left: 20px;
+        }
+    }
+    .text-paragraph h3 {
+        margin-bottom: 0.6em;
+    }
+    .text-paragraph p {
+        margin-bottom: 0.4em;
+    }
+    .text-paragraph p:is(:last-child) {
+        margin-bottom: 1em;
+    }
+
+    /* scroll-triggered reveal, driven by src/scripts/reveal.ts
+       (the old .fade-in / .hiding pair) */
+    [data-reveal]:not(.is-revealed) {
+        opacity: 0;
+    }
+    [data-reveal].is-revealed {
+        animation:
+            firstSlide 0.75s,
+            firstFade 0.75s;
+    }
+
+    /* page-load choreography */
+    main > section:first-child {
+        animation:
+            firstSlide 0.75s,
+            firstFade 1s;
+    }
+    main section:not(main > section:first-child) {
+        animation:
+            mainSlide 0.75s,
+            mainFade 1s;
+    }
+
+    /* slim scrollbar for inner scroll panes (desktop only) */
+    @media (min-width: 992px) {
+        .thin-scrollbar::-webkit-scrollbar {
+            width: 0.6em;
+        }
+        .thin-scrollbar::-webkit-scrollbar-track {
+            border-radius: 0.6em;
+        }
+        .thin-scrollbar::-webkit-scrollbar-thumb {
+            background-color: var(--color-line);
+            background-clip: padding-box;
+            border: 2px solid transparent;
+            border-radius: 100vw;
+            min-height: 3em;
+        }
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Rendered markdown — the old Remarkable.scss
+\* ------------------------------------------------------------------ */
+
+@layer components {
+    .md :is(h1, h2, h3, h4, h5, h6) {
+        margin-bottom: 1.2rem;
+    }
+
+    .md blockquote {
+        display: flex;
+    }
+    .md blockquote::before {
+        content: "";
+        display: inline-block;
+        width: 4px;
+        margin-right: 10px;
+        border-radius: 2px 8px 8px 2px;
+        background: var(--color-line);
+    }
+    .md blockquote > p:is(:last-child) {
+        margin-bottom: 0;
+    }
+
+    .md img {
+        border-radius: 4px;
+        margin-bottom: 0.8em;
+    }
+
+    .md code {
+        background: var(--color-paper-soft);
+        color: var(--color-ink);
+        font-size: 0.875em;
+        padding: 4px;
+        border-radius: 3px;
+    }
+    .md pre {
+        margin-bottom: 0.4em;
+        padding: 4px 8px;
+        border-radius: 4px;
+        overflow-x: auto;
+    }
+    .md pre > code {
+        display: block;
+        background: none;
+        padding: 0;
+    }
+
+    .md table {
+        border: 1px solid var(--color-line);
+        margin-bottom: 0.8em;
+    }
+    .md table * {
+        box-sizing: content-box;
+        border: 1px solid var(--color-line);
+    }
+    .md table th {
+        background: var(--color-paper-soft);
+    }
+    .md :is(th, td) {
+        padding: 6px 10px;
+    }
+
+    .md hr {
+        border: none;
+        border-radius: 2px;
+        height: 3px;
+        background: var(--color-line);
+        opacity: 1;
+    }
+
+    .md .btn {
+        text-decoration: none;
+    }
+}
+
+/* ------------------------------------------------------------------ *\
+   Page-specific rules carried over from the old per-page SCSS
+\* ------------------------------------------------------------------ */
+
+@layer components {
+    /* about — mascot figures. markdown wraps each child in its own <p>,
+       so the paragraphs are the flex items and the image sizes inside one. */
+    .mascot {
+        display: flex;
+        margin: 0;
+    }
+    .mascot > p {
+        margin: 0;
+    }
+    .mascot > p:has(img) {
+        flex-shrink: 0;
+    }
+    .mascot img {
+        width: 180px;
+        height: auto;
+        margin: 0 55px 0.8em 0;
+        padding: 20px;
+    }
+    @media (max-width: 768px) {
+        .mascot {
+            flex-direction: column;
+            align-items: center;
+        }
+        .mascot img {
+            margin: 0 0 0.8em;
+        }
+    }
+
+    /* home — site map cards */
+    #map .row > .col-md-3 {
+        margin-bottom: 2em;
+    }
+    #map .card {
+        height: 100%;
+    }
+    #map .card h5 {
+        font-size: 24px;
+    }
+    #map .card p {
+        margin-bottom: 20px;
+    }
+    #map .card .card-text {
+        margin-bottom: 60px;
+    }
+    #map .card .btn {
+        position: absolute;
+        bottom: 20px;
+        font-weight: 600;
+    }
+
+    /* courses */
+    .course {
+        display: flex;
+        margin-bottom: 3rem;
+    }
+    .course p {
+        margin-bottom: 0.6rem;
+    }
+    .course > img {
+        width: 400px;
+        height: fit-content;
+        flex-shrink: 0;
+        border: 3px solid var(--color-line);
+        border-radius: 10px;
+    }
+    .course > .description {
+        margin-left: 20px;
+    }
+    .course .btn {
+        font-weight: 600;
+    }
+    @media (max-width: 992px) {
+        .course {
+            flex-direction: column;
+        }
+        .course > img {
+            width: 600px;
+            max-width: 80dvw;
+        }
+        .course > .description {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
+
+    /* events */
+    .event-figure {
+        position: relative;
+    }
+    .event-figure img {
+        width: 320px;
+        border: 3px solid var(--color-line);
+        border-radius: 14px;
+        margin-bottom: 48px;
+    }
+    .event-figure figcaption {
+        position: absolute;
+        bottom: 56px;
+        left: 64px;
+        margin-bottom: 0.5rem;
+        padding: 4px 14px;
+        border-radius: 20px;
+        background: rgb(255 255 255 / 0.95);
+        font-family: var(--font-heading);
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1.2;
+    }
+    .event-body h3 {
+        font-size: 28px;
+        font-weight: 400;
+    }
+    .event-body p {
+        font-size: 18px;
+    }
+    .event-body .event-time {
+        font-size: 14px;
+    }
+    @media only screen and (max-width: 1399px) {
+        .event-figure figcaption {
+            left: 36px;
+        }
+    }
+    @media only screen and (max-width: 1199px) {
+        .event-figure figcaption {
+            left: 24px;
+        }
+    }
+    @media only screen and (max-width: 991px) {
+        .event-figure img {
+            width: 252px;
+        }
+        .event-body p {
+            margin-bottom: 52px;
+        }
+    }
+    @media only screen and (max-width: 767px) {
+        .event-figure img {
+            width: 420px;
+            margin-bottom: 16px;
+        }
+        .event-body p {
+            margin-bottom: 28%;
+        }
+        .event-figure figcaption {
+            left: 64px;
+            bottom: 20px;
+        }
+    }
+    @media only screen and (max-width: 536px) {
+        .event-figure img {
+            width: 360px;
+            max-width: 90dvw;
+        }
+        .event-figure figcaption {
+            left: 80px;
+        }
+    }
+    @media only screen and (max-width: 500px) {
+        .event-figure figcaption {
+            left: 56px;
+        }
+    }
+    @media only screen and (max-width: 450px) {
+        .event-figure figcaption {
+            left: 32px;
+            font-size: 0.8em;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        .event-figure figcaption {
+            left: 12px;
+        }
+    }
+
+    /* museum */
+    .museum-item {
+        width: 991px;
+        max-width: 85dvw;
+        display: flex;
+        margin-bottom: 3em;
+    }
+    .museum-item img {
+        width: 420px;
+        height: auto;
+        border: 4px solid var(--color-line);
+        border-radius: 6px;
+        object-fit: cover;
+        max-width: 86dvw;
+    }
+    .museum-item .vertical-line {
+        width: 0;
+        border: 2px solid var(--color-line);
+        border-radius: 4px;
+        margin: 0 16px;
+    }
+    .museum-item h4 {
+        margin-bottom: 1rem;
+    }
+    .museum-item p:is(:last-child) {
+        margin-bottom: 0;
+    }
+    @media only screen and (max-width: 792px) {
+        .museum-item {
+            flex-direction: column;
+        }
+        .museum-item img {
+            margin-bottom: 18px;
+            border: 2px solid var(--color-line);
+            border-radius: 3px;
+        }
+        .museum-item .vertical-line {
+            display: none;
+        }
+    }
+
+    /* team */
+    .person {
+        position: relative;
+        display: flex;
+        margin-bottom: 3rem;
+    }
+    .person > img,
+    .person > .person-photo {
+        width: 250px;
+        height: 250px;
+        flex-shrink: 0;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+    .person .hover-to-show {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 200ms ease;
+    }
+    .person .hover-to-show:hover {
+        opacity: 1;
+    }
+    .person .description {
+        margin-left: 20px;
+        width: 42em;
+        max-width: 50vw;
+    }
+    .person-tag {
+        display: inline-block;
+        padding: 2px;
+        border-radius: 3px;
+        background: var(--color-paper-soft);
+    }
+    @media (max-width: 992px) {
+        .person {
+            flex-direction: column;
+            align-items: center;
+        }
+        .person > .person-photo,
+        .person > .description {
+            width: 360px;
+            max-width: 80dvw;
+        }
+        .person > .person-photo {
+            height: 360px;
+            max-height: 80dvw;
+        }
+        .person > .description {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
+
+    /* team — club switcher */
+    .team-switch-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .team-toggle-switch {
+        position: relative;
+        display: flex;
+        width: 200px;
+        height: 34px;
+        border: 1px solid var(--color-line);
+        border-radius: 5px;
+        cursor: pointer;
+        user-select: none;
+    }
+    .team-toggle-switch .switch-rect {
+        position: absolute;
+        z-index: 4;
+        top: 3px;
+        bottom: 3px;
+        width: 50%;
+        border-radius: 4px;
+        background-color: var(--color-line);
+        transition: left 200ms ease-out;
+    }
+    .team-toggle-switch .switch-label {
+        position: relative;
+        z-index: 5;
+        width: 50%;
+        line-height: 34px;
+        text-align: center;
+        font-size: 0.9em;
+        cursor: pointer;
+    }
+
+    .team-section-anchor {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        transition: height 500ms ease;
+    }
+    .team-track {
+        display: flex;
+        width: 200%;
+        align-items: flex-start;
+        transition: transform 500ms ease;
+    }
+    .team-panel {
+        width: 50%;
+    }
+
+    /* courses — slides panel */
+    .slides-container {
+        border: 3px solid var(--color-line);
+        border-radius: 8px;
+        display: flex;
+        height: 33em;
+        overflow: hidden;
+    }
+    .slides-list {
+        width: 24em;
+    }
+    .slides-list,
+    .slides-contents {
+        overflow-y: auto;
+        padding: 0 1em;
+        margin: 1.6em 0.6em;
+    }
+    .slides-vertical-line {
+        border: 1.5px solid var(--color-line);
+        border-radius: 1.5px;
+        margin: 1.6em 0;
+    }
+    .slides-contents {
+        flex-grow: 1;
+    }
+    .slides-contents h4 {
+        margin: 1em 0;
+    }
+    .slides-contents h4:first-child {
+        margin-top: 0;
+    }
+    .slides-list a {
+        display: block;
+        border-radius: 8px;
+        padding: 0.5em;
+        margin-bottom: 0.4em;
+        transition: background-color 200ms;
+        cursor: pointer;
+    }
+    .slides-list a[aria-current="true"] {
+        background-color: var(--color-sand);
+    }
+    @media only screen and (max-width: 576px) {
+        .slides-container {
+            flex-direction: column;
+            height: unset;
+            border: none;
+        }
+        .slides-contents,
+        .slides-list {
+            margin: 0.4em 0.2em;
+        }
+        .slides-list,
+        .slides-vertical-line {
+            display: none;
+        }
+        .slides-contents {
+            height: unset;
+            overflow: visible;
+        }
+    }
+}

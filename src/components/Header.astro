@@ -1,0 +1,115 @@
+---
+import Logo from "./Logo.astro";
+import MobileNav from "./MobileNav.tsx";
+import { navItems, ordinal, site } from "~/data/site";
+
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header id="site-header" class="bg-paper sticky top-0 z-40">
+    <div class="site-container">
+        <nav class="navbar" aria-label="主選單">
+            <div class="navbar-inner">
+                <Logo />
+
+                <ul class="navbar-nav">
+                    {
+                        navItems.map((item) => (
+                            <li>
+                                <a
+                                    href={item.href}
+                                    class="nav-link"
+                                    aria-current={
+                                        currentPath === item.href
+                                            ? "page"
+                                            : undefined
+                                    }
+                                    target={item.external ? "_blank" : undefined}
+                                    rel={item.external ? "noreferrer" : undefined}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
+                        ))
+                    }
+                </ul>
+
+                {/* only narrow viewports need the drawer, so desktop ships no React */}
+                <MobileNav
+                    client:media="(max-width: 991.98px)"
+                    items={navItems}
+                    title={`CKEFGISC ${site.generation}${ordinal(site.generation)}`}
+                    currentPath={currentPath}
+                />
+            </div>
+        </nav>
+    </div>
+</header>
+
+<style>
+    header {
+        transition: box-shadow 200ms ease;
+    }
+
+    /* Bootstrap navbar metrics, which the old header was built on */
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+    }
+
+    .navbar-inner {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.75rem;
+    }
+
+    .navbar-nav {
+        display: none;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        align-items: flex-end;
+        white-space: nowrap;
+    }
+
+    @media (min-width: 992px) {
+        .navbar-nav {
+            display: flex;
+        }
+    }
+
+    .navbar-nav li {
+        margin: 0 16px;
+        font-size: 20px;
+        font-weight: 600;
+        transition:
+            font-size 200ms ease,
+            margin 200ms ease;
+    }
+
+    /* .navbar-expand-lg raises the horizontal padding at >=lg */
+    .nav-link {
+        display: block;
+        padding: 0.5rem;
+        color: rgb(0 0 0 / 0.65);
+        transition: color 0.15s ease-in-out;
+    }
+    .nav-link:hover {
+        color: rgb(0 0 0 / 0.8);
+    }
+
+    /* toggled by src/scripts/header.ts once the page is scrolled */
+    header:global(.header-shrink) .navbar-nav li {
+        margin: 0 15px;
+        font-size: 18px;
+    }
+    header:global(.header-shrink) .nav-link {
+        padding: 5px;
+    }
+</style>

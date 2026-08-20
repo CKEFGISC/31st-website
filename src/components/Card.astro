@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+
+import { asset } from "~/lib/images";
+import type { accents } from "~/content.config";
+
+interface Props {
+    href: string;
+    image: string;
+    title: string;
+    description: string;
+    accent?: (typeof accents)[number];
+}
+
+const { href, image, title, description, accent = "papaya" } = Astro.props;
+---
+
+<div class="col-md-3">
+    <a href={href}>
+        <div class="card">
+            <Image
+                src={asset(image)}
+                class="card-img-top"
+                alt=""
+                width={660}
+                widths={[200, 330, 480, 660]}
+                sizes="(min-width: 768px) 25vw, 92vw"
+                loading="lazy"
+            />
+            <div class="card-body">
+                <h5 class="card-title">{title}</h5>
+                <p class="card-text">{description}</p>
+                <span class:list={["btn btn-accent", `accent-${accent}`]}>
+                    點此查看
+                </span>
+            </div>
+        </div>
+    </a>
+</div>

@@ -1,206 +1,183 @@
 # 操作說明
 
-建北電資 28th 社網開發者操作說明
-
-v0.1 - by 晴
+建北電資 31st 社網開發者操作說明
 
 ---
 
-## 管理權
+## 這個網站是什麼做的
 
-如果你想參與改進這個專案，請聯繫  
-Discord: 晴 `@star_huey`
+| 東西 | 做什麼的 |
+| - | - |
+| [Astro](https://docs.astro.build) | 網站框架，負責把資料跟版型組成靜態 HTML |
+| [React](https://react.dev) | 只用在需要互動的地方（幹部頁切換、手機選單） |
+| [Tailwind CSS](https://tailwindcss.com) | 樣式，直接寫在 class 裡面，不用另外開 CSS 檔 |
+| [TypeScript](https://www.typescriptlang.org) | 加了型別的 JavaScript，改錯資料欄位時會直接跟你講 |
+| [Bun](https://bun.sh) | 套件管理 + 執行工具（也可以用 npm / pnpm） |
 
-## 小知識
-
-這個專案是用 GitHub 管理，語言有 JavaScript、SCSS 等等
-
-網站由 React JS 架設，網頁中使用了 Bootstrap、jQuery 等擴充工具
-
-如果你對這些東西不是很熟悉，請自行上網研究一下
+網站是**全靜態**的：`bun run build` 會把所有頁面預先算好變成 HTML，
+所以沒有後端、沒有資料庫，載入很快，放 GitHub Pages 就好。
 
 ## 事前準備
 
-1. 下載所有需要用到的東西
-    - VS Code
-    - Git
-    - Node.js & NPM
-2. 一個新的資料夾
-
-<small>*※作業系統是 Linux 的話超棒，Windows 也還行，Mac 我就幫不了你了*</small>
-
-## Git 指令
-
-介紹一下 Git 指令好了
-
-首次下載這個專案到本機：
+1. 裝好這些東西
+    - [VS Code](https://code.visualstudio.com)（建議裝 Astro 跟 Tailwind CSS IntelliSense 兩個擴充套件，開專案時會自動推薦）
+    - [Git](https://git-scm.com)
+    - [Bun](https://bun.sh)（或 Node.js 22.12 以上）
+2. 把專案抓下來
 
 ```bash
-cd "Your folder"
-git clone https://github.com/ckefgisc-28th/ckefgisc-28th.github.io.git .
+git clone https://github.com/CKEFGISC/31st-website.git
+cd 31st-website
+bun install
 ```
 
-儲存一次更新內容：
+## 指令
 
 ```bash
-git commit -m "I did something"
-```
-
-<small>*※ 請照實填寫你做了什麼*</small>
-
-把雲端最新版下載到本機：
-
-```bash
-git pull
-```
-
-把新版本上傳到雲端：
-
-```bash
-git push
-```
-
-要修改的話通常都是先 pull，根據修改內容 commit，完成後再 push
-
-另外，也可以使用 GitHub Desktop 就不用打指令了
-
-## 開始
-
-首先，用 Git 把專案 Clone 下來
-
-用 VS Code 打開資料夾，按 ``[Ctrl] + [`]`` 打開終端機
-
-<small>*※建議開兩個終端機，一個打指令，另一個即時更新網頁*</small>
-
-然後執行這個指令：
-
-```bash
-npm install
-```
-
-安裝所有需要的模組到 `node_modules/`
-
-這樣就完成設置了
-
-另外，若要生成靜態網頁，可以使用以下指令：
-
-```bash
-npm run build
+bun run dev      # 開發伺服器，改檔案會自動重新整理
+bun run build    # 產生靜態網站到 dist/
+bun run preview  # 預覽 build 出來的結果
+bun run check    # 檢查型別跟語法有沒有錯（送 PR 前跑一下）
+bun run deploy   # build 完推到 GitHub Pages
 ```
 
 ## 架構
 
-根目錄的架構如下：
-
 ```bash
-.
-│  .env
-│  .gitignore
-│  package.json
-│  package-lock.json
-│  README.md
-│
-├─ .git/      
-├─ .vscode/     
-├─ node_modules/  
-├─ build/     
-├─ docs/     
-├─ public/       
-└─ src/           
+./
+├─ public/            # 直接對外的檔案：圖片、favicon、CNAME
+├─ src/
+│  ├─ components/     # 可重複使用的元件
+│  ├─ content/        # 用 Markdown 寫的內容（課程、關於我們）
+│  ├─ data/           # 用 TypeScript 寫的內容（幹部、活動、歷屆、選單）
+│  ├─ layouts/        # 每頁共用的外框（<head>、Header、Footer）
+│  ├─ lib/            # 小工具函式
+│  ├─ pages/          # 每個檔案 = 一個網址
+│  ├─ scripts/        # 前端小腳本（捲動動畫、header 縮小）
+│  ├─ styles/         # global.css，顏色、字體、共用樣式都在這
+│  └─ content.config.ts  # 定義 Markdown 的欄位格式
+├─ astro.config.mjs
+└─ package.json
 ```
 
-這些可以不用理他：
+### 網址怎麼來的
 
-| 名稱 | 解釋 |
-|-|-|
-| `.env` | 環境設定 |
-| `.gitignore` | Git 不理會的檔案列表 |
-| `package.json` | 告訴 NPM 有哪些需要的 Packages |
-| `package-lock.json` | 同上 |
-| `README.md` | 介紹文 |
-| `.git/` | Git 的東西 |
-| `.vscode/` | 編輯介面設定 |
-| `node_modules` | 模組包存放的地方 |
-| `build/` | 編譯完的檔案 |
-| `docs/` | 教學，你現在正在看 |
+`src/pages/` 裡面的檔案名稱就是網址：
 
-真正重要的地方是：
+| 檔案 | 網址 |
+| - | - |
+| `pages/index.astro` | `/` |
+| `pages/about.astro` | `/about` |
+| `pages/team.astro` | `/team` |
+| `pages/courses/index.astro` | `/courses` |
+| `pages/courses/[id].astro` | `/courses/algorithm`、`/courses/web`… |
+| `pages/404.astro` | 找不到頁面時 |
 
-| 名稱 | 解釋 |
-|-|-|
-| `public/` | 所有公開的資料：ICON、圖片 等等 |
-| `src/` | 放程式碼的地方 |
+`[id].astro` 的中括號代表「這裡會變」，它會幫 `src/content/courses/` 裡的每個
+Markdown 檔各產生一頁。
 
-### `public/` 之架構
+---
 
-```bash
-./public/
-│  bootstrap-5.3.1.zip
-│  bootstrap-5.3.1-dist.zip
-│  CNAME
-│  favicon.ico
-│  index.html
-│  manifest.json
-│  README.md
-│
-├─ icons/
-└─ images/
+## 常見的修改
+
+### 改幹部
+
+編輯 `src/data/team.ts`，照著現有格式加一筆就好：
+
+```ts
+{
+    role: "學術",
+    name: "某某",
+    tags: ["標籤一", "標籤二"],
+    description: [
+        "一段介紹。",
+        "第二段介紹，一個字串就是一個段落。",
+    ],
+    photo: "/images/team/ckeisc/Formal/someone.jpg",
+    photoAlt: "/images/team/ckeisc/Informal/someone.jpg", // 可省略，滑鼠移上去會換這張
+}
 ```
 
-不要去動的：
+照片放在 `public/images/team/{ckeisc,fgisc}/{Formal,Informal}/`，
+路徑從 `/images/...` 開始寫（不用寫 `public`）。
 
-| 名稱 | 解釋 |
-|-|-|
-| `bootstrap-5.3.1.zip` | Bootstrap 存檔，只是放著而已 |
-| `bootstrap-5.3.1-dist.zip` | 同上，編譯過的 |
-| `CNAME` | 網站名稱，給 GitHub Pages 看的 |
-| `favicon.ico` | 預設網站圖示 |
-| `index.html` | 含有 `head`、`body` & `#root` 的最基本 html 架構 |
-| `manifest.json` | 網站資料 |
-| `README.md` | 引導別人到正確的 `README` 文件 |
+### 改活動
 
-存資料的：
+編輯 `src/data/events.ts`。四個陣列分別對應頁面上的四個區塊：
+`upcomingEvents`（未來活動）、`pastEvents`（已結束）、
+`irregularEvents`（不定期）、`otherEvents`（非本屆）。
 
-`icons/` 和 `images/` 應該不用解釋吧
+`image` 可以省略，會自動用 `/images/events/404.png` 代替。
 
-### `src/` 之架構
+### 改課程
 
-這裡就是最重要的地方了
+每堂課是 `src/content/courses/` 裡的一個 `.md` 檔，**檔名就是網址**
+（`algorithm.md` → `/courses/algorithm`）。
 
-```bash
-./src/
-│  index.js
-│  index.scss
-│  Main.js
-│  Page.js
-│
-├─ footer/
-├─ header/
-├─ pages/
-│   ├─ courses/
-│   ├─ events/
-│   ├─ home/
-│   ├─ museum/
-│   ├─ news/
-│   └─ team/
-│
-└─ utils/
+```markdown
+---
+title: 演算法 (C++)          # 課程卡片上的完整名稱
+shortTitle: 演算法            # 標題列用的短名稱
+image: /images/courses/C++.png
+accent: crimson              # 按鈕顏色，可選值在 src/content.config.ts
+group: minor                 # major = 大社課、minor = 放學小社課
+order: 1                     # 同一組裡的排序
+instructors: [Boron, Roy, 水餃]
+summary: |                   # 課程列表上的短介紹，空行代表分段
+  第一段。
+
+  第二段。
+slides:                      # 沒有簡報就整段刪掉
+    - title: 第一堂
+      provider: slides       # slides = slides.com，embed = 已經可以嵌入的網址
+      url: https://slides.com/someone/deck
+---
+
+這裡開始是課程詳細頁的長介紹，直接用 Markdown 寫。
 ```
 
-就不一一解釋了，請看下一章
+欄位打錯或漏掉，`bun run dev` 會直接報錯告訴你哪一行有問題。
 
-## JSX
+### 改「關於我們」
 
-首先看到 `public/index.html`
+編輯 `src/content/pages/about.md`，就是一般的 Markdown，也可以直接寫 HTML。
 
-`<head>` 裡面是一些通用的頁面設定，Bootstrap、字體、Font Awesome 的引入
+### 改選單、社群連結
 
-`<body>` 則是沒有 JavaScript 的警示語 和 一個識別為 `#root` 的 `div`
+編輯 `src/data/site.ts`：`navItems` 是導覽列（電腦版跟手機版共用同一份），
+`socialLinks` 是頁尾的圓形圖示。
 
-這些有什麼用？
+### 改顏色、字體
 
-看到 `src/index.js`
+`src/styles/global.css` 最上面的 `@theme` 區塊。改了之後，
+Tailwind 的 class 會跟著變（例如 `--color-brand` 對應 `bg-brand`、`text-brand`）。
 
-裡面就是引入函式庫，然後排版
+### 加圖示
 
-在 `root.render(/* ... */)` 裡面
+`src/components/Icon.astro` 裡面是手寫的 SVG，加一個 key 進 `glyphs` 就能用
+`<Icon name="你的名字" />`。
+
+---
+
+## 部署
+
+推到 `main` 之後跑：
+
+```bash
+bun run deploy
+```
+
+它會 `build` 出 `dist/`，再用 `gh-pages` 推到 `gh-pages` 分支。
+`public/CNAME` 會一起被複製過去，所以自訂網域不會掉。
+
+---
+
+## 一些細節
+
+- **動畫**：想讓某個區塊「捲到才淡入」，加 `data-reveal` 屬性就好，
+  `src/scripts/reveal.ts` 會用 IntersectionObserver 處理。
+- **舊網址**：以前的社網用 `#/about` 這種 hash 網址，
+  `BaseLayout.astro` 裡有一小段 script 會自動轉到 `/about`，舊連結不會壞。
+- **React 用在哪**：只有 `MobileNav.tsx`（手機選單）跟 `TeamSwitcher.tsx`
+  （建電／北資切換）。其他都是 Astro 元件，不會送任何 JavaScript 到瀏覽器。
+  幹部名單本身也是 Astro 在 build 時就渲染好，再塞進 React 元件裡的。

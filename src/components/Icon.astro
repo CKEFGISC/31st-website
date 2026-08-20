@@ -1,0 +1,57 @@
+---
+/**
+ * Inline SVG icons. Replaces the Font Awesome kit script the old site
+ * loaded from a CDN — we only ever used a handful of glyphs.
+ */
+export type IconName =
+    | "link"
+    | "instagram"
+    | "envelope"
+    | "external"
+    | "arrow-right"
+    | "arrow-left"
+    | "menu"
+    | "close";
+
+interface Props {
+    name: IconName;
+    class?: string;
+    size?: string;
+    "aria-hidden"?: boolean;
+}
+
+const { name, class: className, size = "1em" } = Astro.props;
+
+const glyphs: Record<IconName, string> = {
+    link: `<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7" />
+           <path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7" />`,
+    instagram: `<rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none" />`,
+    envelope: `<rect x="2.5" y="4.5" width="19" height="15" rx="2.5" />
+               <path d="m3.5 6.5 8.5 6.5 8.5-6.5" />`,
+    external: `<path d="M14 4h6v6" />
+               <path d="M20 4 11 13" />
+               <path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5" />`,
+    "arrow-right": `<path d="M4 12h15" /><path d="m13 6 6 6-6 6" />`,
+    "arrow-left": `<path d="M20 12H5" /><path d="m11 6-6 6 6 6" />`,
+    menu: `<path d="M4 7h16" /><path d="M4 12h16" /><path d="M4 17h16" />`,
+    close: `<path d="M6 6 18 18" /><path d="M18 6 6 18" />`,
+};
+---
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={size}
+    height={size}
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class={className}
+    aria-hidden="true"
+    focusable="false"
+    set:html={glyphs[name]}
+/>
