@@ -104,6 +104,19 @@ const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
         color: rgb(0 0 0 / 0.8);
     }
 
+    /* the container stays 960px wide until xl, which the full-size links
+       overflow — below xl they take the shrunk metrics so the brand and the
+       links keep sharing one row instead of wrapping onto two */
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .navbar-nav li {
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .nav-link {
+            padding: 5px;
+        }
+    }
+
     /* toggled by src/scripts/header.ts once the page is scrolled */
     header:global(.header-shrink) .navbar-nav li {
         margin: 0 15px;
