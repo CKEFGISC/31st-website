@@ -38,7 +38,7 @@ const { person } = Astro.props;
     </div>
 
     <div class="description">
-        <h4>{person.role}&nbsp;─&nbsp;</h4>
+        <p class="person-role">{person.role}&nbsp;─&nbsp;</p>
         <h2>{person.name}</h2>
 
         <p class="person-tags">
@@ -75,8 +75,14 @@ const { person } = Astro.props;
         border-radius: 20px;
         object-fit: cover;
     }
-    h4 {
+    /* styled like a heading, but not one: keeps the h1 -> h2 order intact */
+    .person-role {
+        margin-top: 0;
         margin-bottom: 0.5rem;
+        font-family: var(--font-heading);
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.2;
     }
     h2 {
         margin-bottom: 1rem;
