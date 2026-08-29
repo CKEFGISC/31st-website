@@ -56,7 +56,7 @@ title: 關於我們
 
 - #### 社史
 
-  北一女中資訊研習社創社（簡稱北一資研、北資）於民國 76 年 11 月 11 日，現任社師為楊喻文老師。
+  北一女中資訊研習社創社（簡稱北一資研、北資）於民國 76 年 11 月 11 日，現任社師為蘇弘愷老師。
   有屬於我們社團獨自的 BBS 站 ── [弗基斯特 <svg class="external-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="0.75em" height="0.75em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 11 13"/><path d="M18 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>](telnet://fgisc.org)，
   大社課教授C++，並鼓勵社員參與競賽，歷屆許多表現十分優異學姊。
   中午和放學的額社秉持一直以來的多元化傳統，致力提升校內資訊風氣，也有各式活動聯絡彼此感情。
