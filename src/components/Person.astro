@@ -53,8 +53,8 @@ const { person } = Astro.props;
         </p>
 
         {
-            person.description?.length ? (
-                person.description.map((paragraph) => <p>{paragraph}</p>)
+            person.Description ? (
+                <person.Description />
             ) : (
                 <div class="coming-soon">
                     <span class="coming-soon-text">敬請期待</span>

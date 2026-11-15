@@ -52,4 +52,8 @@ const pages = defineCollection({
     }),
 });
 
-export const collections = { courses, pages };
+const team = defineCollection({
+    loader: glob({ base: "./src/content/team", pattern: "**/*.md" }),
+});
+
+export const collections = { courses, pages, team };
