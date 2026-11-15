@@ -28,7 +28,7 @@ const ckeisc: Person[] = [
     {
         role: "副社長 x 美宣 x 公關",
         name: "山豬",
-        tags: ["爆肝", "卷"],
+        tags: ["爆肝", "卷", "畫畫"],
         description: "content/team/ckeisc/yec.md",
         photo: "/images/team/ckeisc/Formal/yec.jpg",
     },
