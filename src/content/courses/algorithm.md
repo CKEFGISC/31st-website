@@ -5,7 +5,7 @@ image: /images/courses/C++.png
 accent: crimson
 group: minor
 order: 1
-instructors: [Boron, Roy, 水餃]
+instructors: [owl, 燒雞]
 summary: 演算法是程式設計重要的知識，對程式能力幫助甚大。因此這堂課會用 C++ 教授演算法和資料結構，讓學生獲得參與 APCS 和其他程式競賽的知識。
 ---
 

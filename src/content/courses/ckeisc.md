@@ -1,11 +1,11 @@
 ---
 title: 建電大社課
 shortTitle: 建電大社課
-image: /images/courses/ckeisc45.png
+image: /images/courses/ckeisc46.png
 accent: crimson
 group: major
 order: 1
-instructors: [Windsor, Roy, Boron, Benny]
+instructors: [Dong, owl, wayne, 燒雞, bearbear, 雷米, chou]
 summary: ""
 slides:
     - title: 第一堂大社課

@@ -5,7 +5,7 @@ image: /images/courses/Unity.png
 accent: gamboge
 group: minor
 order: 2
-instructors: [夜雨, Benny, Brandon]
+instructors: [海獅, 阿兩(大安)]
 summary: 想設計好玩的遊戲嗎？那來遊戲設計小社準沒錯！這門課中，學長姊會傳授 Unity 這個遊戲引擎的知識，讓你能設計出自己夢寐以求的遊戲！
 ---
 

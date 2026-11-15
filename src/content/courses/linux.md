@@ -5,7 +5,7 @@ image: /images/courses/Cybersecurity.png
 accent: success
 group: minor
 order: 3
-instructors: [Benny, Claire]
+instructors: [Summerain, CC(大安)]
 summary: |
   想成為 Mr. Robot 中的 Elliot 一樣的駭客？或許可以來資安小社看看。
 

@@ -5,7 +5,7 @@ image: /images/courses/Web.png
 accent: orchid
 group: minor
 order: 5
-instructors: [Eating, Windsor]
+instructors: [Dong, 海獅, awd]
 summary: |
   如果你也想寫出像社網一樣優雅的網站，或想設計自己的專案，不可錯過網頁小社！
 

@@ -3,8 +3,8 @@ import { getCollection, type CollectionEntry } from "astro:content";
 export type Course = CollectionEntry<"courses">;
 
 export const courseGroups = [
-    { id: "major", heading: "114 上學期 大社課" },
-    { id: "minor", heading: "114 上學期 放學聯合小社課" },
+    { id: "major", heading: "115 上學期 大社課" },
+    { id: "minor", heading: "115 上學期 放學聯合小社課" },
 ] as const;
 
 /** All courses, grouped and sorted the way the course list renders them. */

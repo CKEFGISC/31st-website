@@ -138,7 +138,6 @@ const fgisc: Person[] = [
 ];
 
 const descriptionEntries = await getCollection("team");
-console.log(descriptionEntries)
 const descriptions = new Map(
     descriptionEntries.map((entry) => [entry.id, entry]),
 );

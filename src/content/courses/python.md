@@ -5,7 +5,7 @@ image: /images/courses/Python.png
 accent: iris
 group: minor
 order: 4
-instructors: [Children, Suzy, Roy]
+instructors: [wayne, 叉燒]
 summary: |
   覺得程式難以入手？想實際運用程式在生活中？如果其中一個問題的答案如此，那你會喜歡上 Python 小社。
 
